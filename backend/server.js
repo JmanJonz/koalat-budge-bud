@@ -4,7 +4,7 @@ import colors from "colors";
 import path from "path";
 import { fileURLToPath } from "url"; 
 
-// environment and path setup
+// environment and path setupppp
     dotenv.config(); // load environment variables from the .env file
 
     // __dirname equivalent for es modules
