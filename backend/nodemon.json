@@ -1,0 +1,22 @@
+{
+  "restartable": "rs",
+  "ignore": [
+    ".git",
+    "node_modules/**/node_modules",
+    "../frontend/dist/"
+  ],
+  "verbose": true,
+  "execMap": {
+    "js": "node"
+  },
+  "watch": [
+    ".",
+    "../frontend/"
+  ],
+  "ext": "js,json,ts,jsx,tsx,css,html",
+  "events": {
+    "start": "echo 'Nodemon detected changes. Building frontend...'",
+    "restart": "npm --prefix ../ build:frontend && echo 'Frontend built, restarting backend...'"
+  },
+  "exec": "cd ../frontend && npm run build && cd ../backend && node server.js"
+}
