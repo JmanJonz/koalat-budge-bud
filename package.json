@@ -1,0 +1,28 @@
+{
+  "name": "koalat-budgebud",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start:backend-and-watch": "node_modules/.bin/nodemon --watch packages/backend --ext js,json --exec \"npm run start --workspace=backend\" --signal SIGINT --events restart:restart,crash:restart --delay 1.5 --ignore 'packages/frontend/**/*',browsersync.js",
+    "bs-reload": "browser-sync reload --port 3001",
+    "start:browsersync": "node browsersync.js",
+    "dev": "concurrently \"npm run start:backend-and-watch\" \"npm run start:browsersync\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JmanJonz/KoalaT-Budget-Buddy.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JmanJonz/KoalaT-Budget-Buddy/issues"
+  },
+  "homepage": "https://github.com/JmanJonz/KoalaT-Budget-Buddy#readme",
+  "description": "",
+  "devDependencies": {
+    "browser-sync": "^3.0.4",
+    "concurrently": "^9.2.0"
+  }
+}
