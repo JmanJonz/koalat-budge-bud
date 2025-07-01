@@ -126,6 +126,14 @@ const EntryPage = () => {
     return (
         // Use styles.className for CSS Module classes
         <div className={styles.formContainer}>
+            {/* Logo image added here */}
+            <img
+                src="/logo.png" // Placeholder image URL
+                alt="Logo"
+                className={styles.logoImage}
+                onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/60x60/808080/FFFFFF?text=Error"; }} // Fallback
+            />
+
             <h2 className="text-2xl font-bold text-center text-gray-800 mb-8">Add New Transaction</h2>
 
             <div className={styles.formGroup}>

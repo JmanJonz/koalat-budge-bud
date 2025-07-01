@@ -23,6 +23,7 @@ body > div { /* Target the direct child of body if not #root */
     padding: 20px; /* Add padding around the form for mobile */
     box-sizing: border-box;
     width: 100%; /* Ensure it takes full width */
+    position: relative; /* Needed for absolute positioning of logo */
 }
 
 
@@ -35,7 +36,32 @@ body > div { /* Target the direct child of body if not #root */
     width: 100%; /* Ensure it takes full width up to max-width */
     max-width: 480px; /* Max width for larger screens */
     box-sizing: border-box;
+    position: relative; /* Ensure logo is positioned relative to this container if needed */
 }
+
+/* Logo Image Styling */
+.logoImage {
+    position: absolute;
+    top: 20px; /* Adjust as needed for spacing from top */
+    right: 20px; /* Adjust as needed for spacing from right */
+    width: 45px; /* Small size for the logo */
+    height: 45px;
+    border-radius: 50%; /* Make it circular if desired */
+    object-fit: cover; /* Ensure image covers the area without distortion */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    z-index: 10; /* Ensure it's above other content */
+}
+
+/* Media query for smaller screens to adjust logo position if necessary */
+@media (max-width: 600px) {
+    .logoImage {
+        top: 10px;
+        right: 10px;
+        width: 40px;
+        height: 40px;
+    }
+}
+
 
 /* Form Group (for spacing between fields) */
 .formGroup {
