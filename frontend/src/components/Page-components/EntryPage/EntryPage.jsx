@@ -112,7 +112,7 @@ const EntryPage = () => {
         showMessage(
             `Transaction Added: ${parsedAmount.toFixed(2)} for ${
                 categoriesData[transactionType].find(cat => cat.value === category)?.text || category
-            }!`,
+            }! Aren't You so Proud of meee Shannnn?!???`,
             'success'
         );
 
