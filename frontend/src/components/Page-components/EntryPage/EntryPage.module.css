@@ -1,5 +1,5 @@
 /* You should import 'Inter' font in your main CSS file or public/index.html */
-/* For example, in public/index.html:
+/* For example, in public/public/index.html:
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 */
 
@@ -70,50 +70,47 @@ body > div { /* Target the direct child of body if not #root */
     box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
 }
 
-/* Radio button group layout */
-.radioGroup {
+/* Transaction Type Buttons Group */
+.transactionTypeButtons {
     display: flex;
-    gap: 16px;
+    gap: 16px; /* Spacing between buttons */
     margin-bottom: 20px;
 }
 
-/* Label for individual radio buttons */
-.radioLabel {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    font-weight: 500;
+/* Individual Transaction Type Button */
+.transactionButton {
+    flex: 1; /* Make buttons take equal width */
+    padding: 12px 20px;
+    background-color: #e2e8f0; /* Light gray background */
     color: #475569; /* Slate 600 */
+    border: 1px solid #cbd5e1; /* Light border */
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
-/* Custom radio button appearance */
-.radioInput {
-    margin-right: 8px;
-    appearance: none; /* Hide default radio button */
-    width: 20px;
-    height: 20px;
-    border: 2px solid #94a3b8; /* Slate 400 */
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
-}
-
-/* Checked state for custom radio button */
-.radioInput:checked {
-    border-color: #6366f1; /* Indigo 500 */
+/* Active state for Transaction Type Button */
+.transactionButtonActive {
     background-color: #6366f1; /* Indigo 500 */
+    color: #ffffff;
+    border-color: #6366f1;
+    box-shadow: 0 4px 10px rgba(99, 102, 241, 0.3);
 }
 
-/* Inner dot for checked radio button */
-.radioInput:checked::before {
-    content: '';
-    width: 10px;
-    height: 10px;
-    background-color: #ffffff;
-    border-radius: 50%;
+/* Hover state for Transaction Type Button */
+.transactionButton:hover {
+    background-color: #d1d5db; /* Darker gray on hover */
+    border-color: #94a3b8;
 }
+
+/* Hover state for active Transaction Type Button */
+.transactionButtonActive:hover {
+    background-color: #4f46e5; /* Darker indigo on hover */
+    border-color: #4f46e5;
+}
+
 
 /* Amount input group (for sign and number input) */
 .amountInputGroup {

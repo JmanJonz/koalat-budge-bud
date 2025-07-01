@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import styles from './EntryPage.module.css'; // Import your CSS Module
 
 const EntryPage = () => {
-    // State to manage transaction type (expense/income)
-    const [transactionType, setTransactionType] = useState('expense');
-    // State to manage selected category
+    // State to manage transaction type (expense/income), initialized to null for no default selection
+    const [transactionType, setTransactionType] = useState(null);
+    // State to manage selected category, initialized to empty string for no default selection
     const [category, setCategory] = useState('');
     // State to manage the amount input value (kept as string for input control)
     const [amount, setAmount] = useState('');
@@ -27,17 +27,12 @@ const EntryPage = () => {
     };
 
     /**
-     * Effect to update category dropdown options and set default category
-     * when `transactionType` changes.
+     * Effect to reset category when `transactionType` changes.
+     * It will not automatically select the first option.
      */
     useEffect(() => {
-        const currentCategories = categoriesData[transactionType];
-        if (currentCategories && currentCategories.length > 0) {
-            setCategory(currentCategories[0].value); // Set default to first category
-        } else {
-            setCategory(''); // No categories available
-        }
-    }, [transactionType]); // Dependency array: re-run when transactionType changes
+        setCategory(''); // Reset category to empty when transaction type changes
+    }, [transactionType]);
 
     /**
      * Displays a message in the message box for a short duration.
@@ -49,14 +44,6 @@ const EntryPage = () => {
         setTimeout(() => {
             setMessage(prev => ({ ...prev, visible: false }));
         }, 3000); // Hide after 3 seconds
-    };
-
-    /**
-     * Handles the change event for transaction type radio buttons.
-     * @param {Object} e - The event object.
-     */
-    const handleTransactionTypeChange = (e) => {
-        setTransactionType(e.target.value);
     };
 
     /**
@@ -87,6 +74,16 @@ const EntryPage = () => {
      */
     const handleSubmit = (e) => {
         e.preventDefault(); // Prevent default browser form submission
+
+        if (!transactionType) {
+            showMessage('Please select a transaction type (Expense or Income).', 'error');
+            return;
+        }
+
+        if (!category) {
+            showMessage('Please select a category.', 'error');
+            return;
+        }
 
         let parsedAmount = parseFloat(amount);
 
@@ -119,7 +116,12 @@ const EntryPage = () => {
 
         // Optionally, clear the amount input after submission
         setAmount('');
+        // Optionally, reset transaction type and category
+        // setTransactionType(null);
+        // setCategory('');
     };
+
+    const currentCategories = transactionType ? categoriesData[transactionType] : [];
 
     return (
         // Use styles.className for CSS Module classes
@@ -128,29 +130,21 @@ const EntryPage = () => {
 
             <div className={styles.formGroup}>
                 <label className={styles.formLabel}>Transaction Type:</label>
-                <div className={styles.radioGroup}>
-                    <label className={styles.radioLabel}>
-                        <input
-                            type="radio"
-                            name="transactionType"
-                            value="expense"
-                            checked={transactionType === 'expense'}
-                            onChange={handleTransactionTypeChange}
-                            className={styles.radioInput}
-                        />
+                <div className={styles.transactionTypeButtons}>
+                    <button
+                        type="button"
+                        className={`${styles.transactionButton} ${transactionType === 'expense' ? styles.transactionButtonActive : ''}`}
+                        onClick={() => setTransactionType('expense')}
+                    >
                         Expense
-                    </label>
-                    <label className={styles.radioLabel}>
-                        <input
-                            type="radio"
-                            name="transactionType"
-                            value="income"
-                            checked={transactionType === 'income'}
-                            onChange={handleTransactionTypeChange}
-                            className={styles.radioInput}
-                        />
+                    </button>
+                    <button
+                        type="button"
+                        className={`${styles.transactionButton} ${transactionType === 'income' ? styles.transactionButtonActive : ''}`}
+                        onClick={() => setTransactionType('income')}
+                    >
                         Income
-                    </label>
+                    </button>
                 </div>
             </div>
 
@@ -161,8 +155,12 @@ const EntryPage = () => {
                     className={styles.formSelect}
                     value={category}
                     onChange={handleCategoryChange}
+                    disabled={!transactionType} // Disable until a type is selected
                 >
-                    {categoriesData[transactionType].map((cat) => (
+                    <option value="" disabled>
+                        {transactionType ? "Select a category" : "Select type first"}
+                    </option>
+                    {currentCategories.map((cat) => (
                         <option key={cat.value} value={cat.value}>
                             {cat.text}
                         </option>
@@ -174,7 +172,8 @@ const EntryPage = () => {
                 <label htmlFor="amount" className={styles.formLabel}>Amount:</label>
                 <div className={styles.amountInputGroup}>
                     <span className={styles.amountSign}>
-                        {transactionType === 'expense' ? '-' : '+'}
+                        {/* Corrected ternary operator for the amount sign */}
+                        {transactionType === 'expense' ? '-' : (transactionType === 'income' ? '+' : '')}
                     </span>
                     <input
                         type="number"
@@ -185,8 +184,7 @@ const EntryPage = () => {
                         step="0.01"
                         value={amount}
                         onChange={handleAmountChange}
-                        // The user cannot remove the sign because it's a separate <span> element
-                        // and the input itself only accepts positive numbers.
+                        disabled={!transactionType} // Disable until a type is selected
                     />
                 </div>
             </div>
