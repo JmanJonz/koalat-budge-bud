@@ -88,7 +88,7 @@ const EntryPage = () => {
         let parsedAmount = parseFloat(amount);
 
         if (isNaN(parsedAmount) || parsedAmount <= 0) {
-            showMessage('Please enter a valid positive amount.', 'error');
+            showMessage('Please enter a valid amount.', 'error');
             return;
         }
 
@@ -103,7 +103,9 @@ const EntryPage = () => {
             type: transactionType,
             category: category,
             amount: parsedAmount.toFixed(2) // Format to 2 decimal places
-        });
+            
+        },
+      );
         // -------------------------------------------------------------------
 
         // Display success message
@@ -113,6 +115,8 @@ const EntryPage = () => {
             }!`,
             'success'
         );
+
+        console.log("Okay Ammon now you can save these transactions linked to a user in the database")
 
         // Optionally, clear the amount input after submission
         setAmount('');
