@@ -1,0 +1,12 @@
+@import "normalize.css";
+
+html {
+    color: #2F3E46;
+    background-color: #CAD2C5;
+}
+
+div, section, article, aside, form, button, select, input {
+  border-radius: 5px;
+  border: none;
+  
+}

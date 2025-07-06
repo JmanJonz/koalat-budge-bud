@@ -1,228 +1,40 @@
-/* You should import 'Inter' font in your main CSS file or public/index.html */
-/* For example, in public/public/index.html:
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-*/
-
-/* General body/layout styles for centering and background */
-html, body {
-    font-family: 'Inter', sans-serif;
-    background-color: #f0f4f8; /* Light blue-gray background */
-    margin: 0;
-    padding: 0; /* Ensure no default padding on body */
-    height: 100%; /* Ensure html and body take full height */
-    box-sizing: border-box;
-    overflow-x: hidden; /* Prevent horizontal scroll on small screens */
-}
-
-#root, /* Assuming your React app mounts to a div with id="root" */
-body > div { /* Target the direct child of body if not #root */
+.componentContainer {
+    min-height: 100vh;
+    width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh; /* Make sure it takes full viewport height */
-    padding: 20px; /* Add padding around the form for mobile */
-    box-sizing: border-box;
-    width: 100%; /* Ensure it takes full width */
-    position: relative; /* Needed for absolute positioning of logo */
 }
 
+.formcontainer {
+    width: 400px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    padding: 15px;
 
-/* Form Container */
-.formContainer {
-    background-color: #ffffff;
-    padding: 32px;
-    border-radius: 16px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
-    width: 100%; /* Ensure it takes full width up to max-width */
-    max-width: 480px; /* Max width for larger screens */
-    box-sizing: border-box;
-    position: relative; /* Ensure logo is positioned relative to this container if needed */
 }
 
-/* Logo Image Styling */
-.logoImage {
-    position: absolute;
-    top: 20px; /* Adjust as needed for spacing from top */
-    right: 20px; /* Adjust as needed for spacing from right */
-    width: 45px; /* Small size for the logo */
-    height: 45px;
-    border-radius: 50%; /* Make it circular if desired */
-    object-fit: cover; /* Ensure image covers the area without distortion */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    z-index: 10; /* Ensure it's above other content */
-}
-
-/* Media query for smaller screens to adjust logo position if necessary */
-@media (max-width: 600px) {
-    .logoImage {
-        top: 10px;
-        right: 10px;
-        width: 40px;
-        height: 40px;
-    }
-}
-
-
-/* Form Group (for spacing between fields) */
-.formGroup {
-    margin-bottom: 20px;
-}
-
-/* Labels for form fields */
-.formLabel {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 600;
-    color: #334155; /* Slate 700 */
-}
-
-/* General input and select field styling */
-.formInput,
-.formSelect {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #cbd5e1; /* Slate 300 */
-    border-radius: 8px;
-    font-size: 16px;
-    color: #1e293b; /* Slate 900 */
-    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-}
-
-/* Focus styles for input and select */
-.formInput:focus,
-.formSelect:focus {
-    outline: none;
-    border-color: #6366f1; /* Indigo 500 */
-    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
-}
-
-/* Transaction Type Buttons Group */
-.transactionTypeButtons {
+.transTypeButtonsContainer {
     display: flex;
-    gap: 16px; /* Spacing between buttons */
-    margin-bottom: 20px;
+    justify-content: center;
+    gap: 5px;
 }
 
-/* Individual Transaction Type Button */
-.transactionButton {
-    flex: 1; /* Make buttons take equal width */
-    padding: 12px 20px;
-    background-color: #e2e8f0; /* Light gray background */
-    color: #475569; /* Slate 600 */
-    border: 1px solid #cbd5e1; /* Light border */
-    border-radius: 8px;
-    font-weight: 600;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-}
-
-/* Active state for Transaction Type Button */
-.transactionButtonActive {
-    background-color: #6366f1; /* Indigo 500 */
-    color: #ffffff;
-    border-color: #6366f1;
-    box-shadow: 0 4px 10px rgba(99, 102, 241, 0.3);
-}
-
-/* Hover state for Transaction Type Button */
-.transactionButton:hover {
-    background-color: #d1d5db; /* Darker gray on hover */
-    border-color: #94a3b8;
-}
-
-/* Hover state for active Transaction Type Button */
-.transactionButtonActive:hover {
-    background-color: #4f46e5; /* Darker indigo on hover */
-    border-color: #4f46e5;
-}
-
-
-/* Amount input group (for sign and number input) */
-.amountInputGroup {
-    display: flex;
-    align-items: center;
-    border: 1px solid #cbd5e1;
-    border-radius: 8px;
-    overflow: hidden;
-    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-}
-
-/* Focus state for the amount input group */
-.amountInputGroup:focus-within {
-    border-color: #6366f1;
-    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
-}
-
-/* Styling for the +/- sign */
-.amountSign {
-    padding: 12px 10px;
-    background-color: #e2e8f0; /* Slate 200 */
-    color: #1e293b;
-    font-size: 16px;
-    font-weight: 600;
-    border-right: 1px solid #cbd5e1;
-}
-
-/* Styling for the actual number input */
-.amountInput {
-    flex-grow: 1; /* Takes up remaining space */
-    padding: 12px;
-    border: none; /* Remove individual border */
-    font-size: 16px;
-    color: #1e293b;
-    /* Hide spin buttons for number input */
-    -moz-appearance: textfield; /* Firefox */
-}
-.amountInput::-webkit-outer-spin-button,
-.amountInput::-webkit-inner-spin-button {
-    -webkit-appearance: none; /* Chrome, Safari */
-    margin: 0;
-}
-
-/* Submit button styling */
-.submitButton {
+.transButtons {
     width: 100%;
-    padding: 14px;
-    background-color: #6366f1; /* Indigo 500 */
-    color: #ffffff;
-    font-weight: 700;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
-    font-size: 18px;
-    transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    height: 35px;
+    margin: 5px;
 }
 
-/* Hover effect for submit button */
-.submitButton:hover {
-    background-color: #4f46e5; /* Indigo 600 */
-    box-shadow: 0 4px 10px rgba(99, 102, 241, 0.3);
+.categoryDropdown {
+    width: 100%;
+    height: 35px;
+    background-color: #F0F0F0;
 }
 
-/* Message box for feedback */
-.messageBox {
-    padding: 12px;
-    border-radius: 8px;
-    margin-top: 20px;
-    text-align: center;
-    font-weight: 600;
-    /* Visibility is controlled by React state, not CSS display property directly */
-}
-
-/* Message box success state (apply these classes conditionally in JSX) */
-/* Example: className={`${styles.messageBox} ${message.type === 'success' ? 'bg-green-100 text-green-800' : ''}`} */
-.bg-green-100 {
-    background-color: #d1fae5; /* Green 100 */
-}
-.text-green-800 {
-    color: #065f46; /* Green 800 */
-}
-
-/* Message box error state (apply these classes conditionally in JSX) */
-.bg-red-100 {
-    background-color: #fee2e2; /* Red 100 */
-}
-.text-red-800 {
-    color: #991b1b; /* Red 800 */
+.inputAmount {
+    width: 100%;
+    height: 35px;
+    background-color: #F0F0F0;
 }
