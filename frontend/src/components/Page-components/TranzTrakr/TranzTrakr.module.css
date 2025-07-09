@@ -5,15 +5,14 @@
 
 .componentContainer {
     min-height: 100vh;
-    width: 100vw;
+    min-width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 15px;
 }
 
 .formcontainer {
-    width: 400px;
+    width: 350px;
     background-color: white;
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
@@ -24,14 +23,15 @@
 
 .transTypeButtonsContainer {
     display: flex;
-    justify-content: center;
-    gap: 5px;
+    justify-content: space-between;
+    gap: 8px;
 }
 
 .transButtons {
     width: 100%;
     height: 35px;
-    margin: 5px;
+    padding: 0px;
+    font-weight: bold;
 }
 
 .categoryDropdown {
@@ -51,4 +51,11 @@
     position: absolute;
     top: 10px;
     right: 10px
+}
+
+h2 {
+    text-align: center;
+    font-size: 2rem;
+    border-bottom: 3px solid #2F3E46;
+    margin-bottom: 15px;
 }

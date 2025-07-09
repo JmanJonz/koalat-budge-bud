@@ -3,10 +3,73 @@
 html {
     color: #2F3E46;
     background-color: #CAD2C5;
+    font-family: cursive;
 }
 
 div, section, article, aside, form, button, select, input {
   border-radius: 5px;
   border: none;
   
+}
+
+/* Global CSS for Default Border and Outline Color */
+
+/*
+   1. Set the base text color (which "currentColor" defaults to).
+      This affects text, but also indirectly influences borders/outlines
+      that are set to use currentColor.
+*/
+html {
+  color: #2F3E46; /* This sets the default text color for the entire document */
+}
+
+/*
+   2. Ensure explicit outline color for all elements.
+      The 'outline-color' property, if not specified, defaults to 'currentColor'.
+      However, explicitly setting it here ensures that even if an element's
+      text 'color' property is overridden later, its outline color will
+      still default to #2F3E46.
+      
+      We use the universal selector to catch everything.
+*/
+* {
+  outline-color: #2F3E46;
+}
+
+/*
+   3. Target common elements that might have default browser borders
+      or are likely to receive borders/outlines in your design.
+      By setting 'border-color' here, any existing borders on these
+      elements (or future ones you add) will inherit this color.
+      
+      Crucially, this *only* sets the color; it does not add a border
+      if one isn't already present (i.e., if border-style and border-width
+      are not defined).
+*/
+button,
+input,
+textarea,
+select,
+fieldset, /* Fieldsets have a default border */
+table, th, td, /* Table cells often have borders */
+hr, /* Horizontal rule is a line */
+div, p, span, h1, h2, h3, h4, h5, h6, /* Common block/inline elements */
+ul, ol, li, /* List elements */
+a /* Links might have outlines on focus */
+{
+  border-color: #2F3E46;
+}
+
+/*
+   4. Ensure focus outlines (critical for accessibility) also use this color.
+      This is often where "selected borders" come into play for interactive elements.
+*/
+*:focus {
+  /* Set the outline color for elements when they are focused.
+     This is often visible as a "selected border" or focus ring. */
+  outline-color: #2F3E46;
+  
+  /* Optionally, you might want to ensure the border color also matches
+     if the element already has a border that changes on focus. */
+  border-color: #2F3E46;
 }
