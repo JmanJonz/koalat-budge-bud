@@ -17,13 +17,24 @@ export const TranzTrakr = () => {
             <section>
                 <h4>Cat</h4>
                 <select name="category" id="" className={styles.categoryDropdown}>
-
+                    <option value="" disabled selected hidden>-- Please select an option --</option>
+                  <option value="basic-needs">Basic Needs</option>
+                  <option value="serving-those-in-need">Serving Those In Need</option>
+                  <option value="enjoying-life-now">Enjoying Life Now</option>
+                  <option value="investing-in-a-better-future">Investing In A Better Future</option>
                 </select>
             </section>
             <section>
                 <h4>Sub Cat</h4>
                 <select name="category" id="" className={styles.categoryDropdown}>
-
+                    <option value="" disabled selected hidden>-- Please select an option --</option>
+                  <option value="groceries">Groceries</option>
+                  <option value="gas">Gas</option>
+                  <option value="charity">Charity</option>
+                  <option value="tithing">Tithing</option>
+                  <option value="airbnb">Airbnb</option>
+                  <option value="fun">Fun</option>
+                  <option value="misc">Misc</option>
                 </select>
             </section>
             <section>
