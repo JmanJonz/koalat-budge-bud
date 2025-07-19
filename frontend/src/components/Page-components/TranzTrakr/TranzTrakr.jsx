@@ -7,7 +7,7 @@ export const TranzTrakr = () => {
     <div className={styles.componentContainer}>
         <form className={styles.formcontainer}>
           <h2>Tranz Trakr</h2>
-          <img className={styles.logo} src="/512unbrandedlogo.png" alt="logo" />
+          <img className={styles.logo} src="/512ktbudgebudiconlogo.png" alt="logo" />
             <section>
                 <div className={styles.transTypeButtonsContainer}>
                   <button className={`${styles.transButtons} ${transType === "inflow" ? styles.buttonSelected : ""}`} onClick={()=>{setTransType("inflow")}} type='button'>Inflow</button>
