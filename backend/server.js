@@ -43,7 +43,7 @@ import userGates from "./gates/userGate.js"
 
     // server gates
         // gates to access users in the database
-            server.use("/api/users", userGates);
+            server.use("/api/userGates", userGates);
 
         // serve the the frontend ui
             const viteDistPath = path.join(__dirname, "..", "frontend", "dist")
