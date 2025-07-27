@@ -6,6 +6,7 @@ import colors from "colors";
 import path from "path";
 import { fileURLToPath } from "url"; 
 import userGates from "./gates/user-gate.js"
+import transactionGates from "./gates/transaction-gate.js"
 
 // environment and path setupppp
 // this is important becasue the database function below will use these variables...
@@ -43,7 +44,9 @@ import userGates from "./gates/user-gate.js"
 
     // server gates
         // gates to access users in the database
-            server.use("/api/userGates", userGates);
+            server.use("/gates/users", userGates);
+        // gates to access transactions in the database
+            server.use("gates/transactions", transactionGates)
 
         // serve the the frontend ui
             const viteDistPath = path.join(__dirname, "..", "frontend", "dist")

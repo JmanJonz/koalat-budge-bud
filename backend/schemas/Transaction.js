@@ -1,15 +1,15 @@
 import mongoose from 'mongoose';
 
 const transactionSchema = mongoose.Schema({
-    type: {
-        type: String,
-        enum: ["income", "expense"],
-        required: true
-    },
     amount: {
         type: Number, 
         required: true,
         min: 0.01
+    },
+    type: {
+        type: String,
+        enum: ["income", "expense"],
+        required: true
     },
     category: {
         type: String,
@@ -26,7 +26,7 @@ const transactionSchema = mongoose.Schema({
         required: false
     },
     // relationship references
-        user: {
+        user_id: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User',
             required: true

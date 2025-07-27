@@ -2,7 +2,7 @@ import User from "../schemas/User.js" // import user model that you created
 
 // these are non executable comments but good practice for node development
 // @desc Create a new user
-// @route POST /api/users
+// @route POST /gates/users
 // @access Public
 
 // This function handles the logic for creating a new user in the database.

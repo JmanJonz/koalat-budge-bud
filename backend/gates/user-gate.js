@@ -1,5 +1,5 @@
 import express from "express";
-import { createUser } from "../handlers/userHandler.js";
+import { createUser } from "../handlers/user-handler.js";
 
 const router = express.Router(); // creates an express router instance
 
