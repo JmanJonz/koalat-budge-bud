@@ -46,7 +46,7 @@ import transactionGates from "./gates/transaction-gate.js"
         // gates to access users in the database
             server.use("/gates/users", userGates);
         // gates to access transactions in the database
-            server.use("gates/transactions", transactionGates)
+            server.use("/gates/transactions", transactionGates);
 
         // serve the the frontend ui
             const viteDistPath = path.join(__dirname, "..", "frontend", "dist")
