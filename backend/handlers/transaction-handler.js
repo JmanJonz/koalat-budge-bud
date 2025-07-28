@@ -37,7 +37,7 @@ import Transaction from "../schemas/Transaction.js";
                             res.status(400).json({message: "Error - New transaction was not created..."})
 
                     }
-            } catch {
+            } catch (error) {
                 // 6. catch any database or validation errors
                     console.log("Error creating transaction:", error);
                     // MongoDB unique index error (code 11000), is handled aboce but this catches others. 

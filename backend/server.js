@@ -5,8 +5,8 @@ import cors from "cors"
 import colors from "colors";
 import path from "path";
 import { fileURLToPath } from "url"; 
-import userGates from "./gates/user-gate.js"
-import transactionGates from "./gates/transaction-gate.js"
+import userGates from "./gates/user-gates.js"
+import transactionGates from "./gates/transaction-gates.js"
 
 // environment and path setupppp
 // this is important becasue the database function below will use these variables...
