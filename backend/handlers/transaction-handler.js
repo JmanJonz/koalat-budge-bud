@@ -10,7 +10,7 @@ import TransactionModel from "../models/Transaction-Model.js";
     const createTransaction = async (req, res) => {
         // 1. destructure transaction data from the request body
         //    express's 'app.use(express.json()) middleware in server.js makes 'req.body' available. 
-            const {type, amount, category, sub_category, notes, user_id} = req.body;
+            const {type, amount, category_id, sub_category_id, notes, user_id, household_id} = req.body;
 
         // 2. Basic Server-Side validation: check if all required fields are provided. 
         // This prevents incomplete data from being sent to the database (the database if setup wont allow this either but it prevents spam attacks...)
