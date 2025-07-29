@@ -14,19 +14,20 @@ const subCategorySchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "Category",
         required: [true, "SubCategory must belong to a parent category."]
-    },
-    // reference to the User who owns this sub-category (if not in a household)
-    user_id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-        required: false // Now optional
-    },
-    // reference to the Household this sub-category belongs to (if user is in a household)
-    household_id: { // Database/Schema/Table/Entity/Column Name: snake_case
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Household",
-        required: false // Now optional
     }
+    // I don't think you need this it is redundant since it is already in the parent category...
+            // reference to the User who owns this sub-category (if not in a household)
+            // user_id: {
+            //     type: mongoose.Schema.Types.ObjectId,
+            //     ref: "User",
+            //     required: false // Now optional
+            // },
+            // // reference to the Household this sub-category belongs to (if user is in a household)
+            // household_id: { // Database/Schema/Table/Entity/Column Name: snake_case
+            //     type: mongoose.Schema.Types.ObjectId,
+            //     ref: "Household",
+            //     required: false // Now optional
+            // }
 }, {
     timestamps: true // Adds createdAt and updatedAt
 });
@@ -41,5 +42,5 @@ subCategorySchema.index(
     { unique: true, partialFilterExpression: { household_id: { $exists: true, $ne: null } } }
 );
 
-const SubCategoryModel = mongoose.model("SubCategory", subCategorySchema); // Class/Service Name: PascalCase
+const SubCategoryModel = mongoose.model("sub_categories", subCategorySchema); // Class/Service Name: PascalCase
 export default SubCategoryModel;

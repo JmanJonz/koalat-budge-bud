@@ -14,7 +14,7 @@ import TransactionModel from "../models/Transaction-Model.js";
 
         // 2. Basic Server-Side validation: check if all required fields are provided. 
         // This prevents incomplete data from being sent to the database (the database if setup wont allow this either but it prevents spam attacks...)
-            if (!type || !amount || !category || !sub_category || !user_id) {
+            if (!type || !amount || !category_id || !sub_category_id || !user_id || !household_id) {
                 return res.status(400).json({message: "Missing required inputs..."})
             }
         // if all is well then try to create new user
@@ -22,10 +22,11 @@ import TransactionModel from "../models/Transaction-Model.js";
                 const transaction = await TransactionModel.create({
                     amount,
                     type,
-                    category,
-                    sub_category,
+                    category_id,
+                    sub_category_id,
                     notes,
-                    user_id
+                    user_id,
+                    household_id
                 })
                 // send success if success
                     if (transaction) {

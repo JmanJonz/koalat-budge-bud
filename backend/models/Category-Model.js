@@ -49,5 +49,5 @@ categorySchema.index(
 // 2. A household cannot have two "Food - expense" categories if they are operating as a household.
 // It implies that you should ensure that for a given category, either user_id OR household_id is populated, but not both.
 
-const CategoryModel = mongoose.model("Category", categorySchema); // Class/Service Name: PascalCase
+const CategoryModel = mongoose.model("categories", categorySchema); // Class/Service Name: PascalCase
 export default CategoryModel;
