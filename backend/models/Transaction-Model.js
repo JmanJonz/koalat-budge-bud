@@ -39,7 +39,7 @@ const transactionSchema = mongoose.Schema({
 );
 
 // create the model for the schema
-    const Transaction = mongoose.model('Transaction', transactionSchema);
+    const TransactionModel = mongoose.model('Transaction', transactionSchema);
 
 // export the model not the schema
-    export default Transaction;
+    export default TransactionModel;

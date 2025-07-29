@@ -1,4 +1,4 @@
-import User from "../schemas/User.js" // import user model that you created
+import UserModel from "../models/User-Model.js" // import user model that you created
 
 // these are non executable comments but good practice for node development
 // @desc Create a new user
@@ -19,7 +19,7 @@ import User from "../schemas/User.js" // import user model that you created
 
         // 3. check for existing user (by email or username) to prevent duplicates.
             try {
-                const userExists = await User.findOne({$or: [{ email}, { username }]});
+                const userExists = await UserModel.findOne({$or: [{ email}, { username }]});
 
                 if (userExists) {
                     return res.status(400).json({message: "A user with that username or email already exists"})
@@ -28,7 +28,7 @@ import User from "../schemas/User.js" // import user model that you created
 
                 // 4. create a new user in the database using the User model
                 //    mongoose will apply the schema's default values (like "free" etc for the tier if not provided)
-                    const user = await User.create({
+                    const user = await UserModel.create({
                         username,
                         email,
                         password // !!!! Important as of right now password is saved

@@ -1,4 +1,4 @@
-import Transaction from "../schemas/Transaction.js";
+import TransactionModel from "../models/Transaction-Model.js";
 
 // these are non executable comments but good practice for node development
 // @desc Create a new transaction
@@ -19,7 +19,7 @@ import Transaction from "../schemas/Transaction.js";
             }
         // if all is well then try to create new user
             try {
-                const transaction = await Transaction.create({
+                const transaction = await TransactionModel.create({
                     amount,
                     type,
                     category,
