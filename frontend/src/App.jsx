@@ -1,16 +1,17 @@
 import { Button } from './components/reusable-components/Button/Button'
 import React from 'react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
-import { TranzTrakr } from './components/Page-components/TranzTrakr/TranzTrakr';
-import { TestPage } from './components/Page-components/TestPage/TestPage';
-import { LoginPage } from './components/Page-components/LoginPage/LoginPage.jsx';
+import { TranzTrakrPage } from './components/page-components/Tranz-Trakr-Page/Tranz-Trakr-Page';
+import { MenuPage } from './components/page-components/menu-page/Menu-Page';
+import { LoginPage } from './components/Page-components/Login-Page/Login-Page';
 function App() {
   return (
     <>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<TranzTrakr/>}/>
-        <Route path="/LoginPage" element={<LoginPage/>}/>
+        <Route path="/" element={<TranzTrakrPage/>}/>
+        <Route path="/Menu-Page" element={<MenuPage/>}/>
+        <Route path="/Login-Page" element={<LoginPage/>}/>
       </Routes>
     </BrowserRouter>
     </>

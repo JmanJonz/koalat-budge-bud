@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
-import styles from "./TranzTrakr.module.css"
+import styles from "./Tranz-Trakr-Page.module.css"
+import { Link } from 'react-router-dom';
 
-export const TranzTrakr = () => {
+export const TranzTrakrPage = () => {
   const [transType, setTransType] = useState(null);
   return (
     <div className={styles.componentContainer}>
         <form className={styles.formcontainer}>
           <h2>Tranz Trakr</h2>
-          <img className={styles.logo} src="/512ktbudgebudiconlogo.png" alt="logo" />
+          <Link to={"/Menu-Page"}><img className={styles.logo} src="/512ktbudgebudiconlogo.png" alt="logo" /></Link>
             <section>
                 <div className={styles.transTypeButtonsContainer}>
                   <button className={`${styles.transButtons} ${transType === "inflow" ? styles.buttonSelected : ""}`} onClick={()=>{setTransType("inflow")}} type='button'>Inflow</button>
