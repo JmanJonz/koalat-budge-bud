@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styles from "./LoginPage.module.css"
 export const LoginPage = () => {
-  const [accountActionType, setaccountActionType] = useState("login");
+  const [accountActionType, setaccountActionType] = useState("login"); // built code delete this comment
   return (
     <div className={styles.componentContainer}>
         <form className={styles.formcontainer}>
