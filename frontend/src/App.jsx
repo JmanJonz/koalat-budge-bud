@@ -3,7 +3,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { TranzTrakrPage } from './components/page-components/Tranz-Trakr-Page/Tranz-Trakr-Page';
 import { MenuPage } from './components/page-components/menu-page/Menu-Page';
-import { LoginPage } from './components/page-components/login-page/Login-Page';
+import {LoginPage} from "./components/page-components/login-page/Login-Page"
 function App() {
   return (
     <>
