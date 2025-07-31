@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import styles from "./login-pagee.module.css"
+import styles from "./login-page.module.css"
 import { Link } from 'react-router-dom';
 
 export const LoginPage = () => {
