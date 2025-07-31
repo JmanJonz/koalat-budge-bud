@@ -1,9 +1,9 @@
 import { Button } from './components/reusable-components/Button/Button'
 import React from 'react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
-import { TranzTrakrPage } from './components/page-components/Tranz-Trakr-Page/Tranz-Trakr-Page.jsx';
-import { MenuPage } from './components/page-components/menu-page/Menu-Page.jsx';
-import { LoginPage } from "./components/page-components/login-page/login-page.jsx"
+import { TranzTrakrPage } from './components/page-components/tranz-trakr-pagee/tranz-trakr-pagee.jsx';
+import { MenuPage } from './components/page-components/menu-pagee/menu-pagee.jsx';
+import { LoginPage } from "./components/page-components/login-pagee/login-pagee.jsx"
 function App() {
   return (
     <>
