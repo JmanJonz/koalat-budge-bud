@@ -1,4 +1,12 @@
 
+.submitButton {
+    display: block;
+    margin: 0 auto;
+    background-color: #A9BAB0;
+    padding: 10px;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
 .buttonSelected {
     background-color: #A9BAB0;
 }
