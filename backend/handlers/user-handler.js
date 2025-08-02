@@ -36,7 +36,7 @@ import bcrypt from "bcrypt"
                     const user = await UserModel.create({
                         username,
                         email,
-                        hashedPassword // !!!! Important security measure don't store peoples passwords in the db!
+                        "password" : hashedPassword // !!!! Important security measure don't store peoples passwords in the db!
                     })
                 
                 // 5. Send a success response if everything went well
