@@ -1,4 +1,5 @@
 import UserModel from "../models/User-Model.js" // import user model that you created
+import bcrypt from "bcrypt"
 
 // these are non executable comments but good practice for node development
 // @desc Create a new user
@@ -26,14 +27,16 @@ import UserModel from "../models/User-Model.js" // import user model that you cr
 
                 }
 
+                // * hash the password with tried and true bcrypt hash algorithm
+                    const salt = await bcrypt.genSalt(10);
+                    const hashedPassword = await bcrypt.hash(password, salt);
+
                 // 4. create a new user in the database using the User model
                 //    mongoose will apply the schema's default values (like "free" etc for the tier if not provided)
                     const user = await UserModel.create({
                         username,
                         email,
-                        password // !!!! Important as of right now password is saved
-                                 // as plaintext, in a real world app this must be 
-                                 // encrypted! using something like bcrypt but probably bcrpt itself. 
+                        hashedPassword // !!!! Important security measure don't store peoples passwords in the db!
                     })
                 
                 // 5. Send a success response if everything went well
