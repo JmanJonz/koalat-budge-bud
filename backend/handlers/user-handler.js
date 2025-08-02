@@ -47,7 +47,7 @@ import bcrypt from "bcrypt"
                             username: user.username,
                             email: user.email,
                             tier: user.tier,
-                            message: "User created successfully. Reminder: Password is NOT hashed yet!!"
+                            message: "User created successfully."
                         })
                     } else {
                         // fallback for unexpected issue during creation
