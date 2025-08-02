@@ -1,4 +1,4 @@
-import CategoryModel from "../models/Category-Model";
+import CategoryModel from "../models/category-model";
 
 // @desc    Create a new category
 // @route   POST /api/categories

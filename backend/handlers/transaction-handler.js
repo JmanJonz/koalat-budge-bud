@@ -1,4 +1,4 @@
-import TransactionModel from "../models/Transaction-Model.js";
+import TransactionModel from "../models/transaction-model.js";
 
 // these are non executable comments but good practice for node development
 // @desc Create a new transaction
