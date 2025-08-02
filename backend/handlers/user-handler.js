@@ -1,5 +1,17 @@
 import UserModel from "../models/user-model.js" // import user model that you created
 import bcrypt from "bcrypt"
+import dotenv from "dotenv";
+import jwt from "jsonwebtoken";
+
+// code that is ran when this file is imported
+    dotenv.config();
+
+// generate a new token
+    const generateToken = (JWTContent) => {
+        return jwt.sign(JWTContent, process.env.JWT_SECRET, {
+            expiresIn: "1h", // token expires in one hour... you will want to setup refresh tokens!
+        })
+    };
 
 // these are non executable comments but good practice for node development
 // @desc Create a new user
@@ -63,5 +75,11 @@ import bcrypt from "bcrypt"
 
 // You can add other user-related handler functions here later (e.g., getUserById, updateUser, deleteUser)
 // For now, we only need createUser.
+
+// function that handles logging a user in an authenticating them in a way where they don't have to relogin over and over
+    export const authenticateUser = async (req, res) => {
+        // logic to find and validate user from the database
+            console.log("hitting login gate and authenticate function")
+    }
 
 export {createUser}; // since you exported an object you will want to destructure the object upon import to get what you want from inside it...
