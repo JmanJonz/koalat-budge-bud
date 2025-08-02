@@ -5,8 +5,8 @@ import cors from "cors"
 import colors from "colors";
 import path from "path";
 import { fileURLToPath } from "url"; 
-import userGates from "./gates/user-gates.js"
-import transactionGates from "./gates/transaction-gates.js"
+import UserGate from "./gates/user-gate.js"
+import TransactionGate from "./gates/transaction-gate.js"
 
 // environment and path setupppp
 // this is important becasue the database function below will use these variables...
@@ -44,9 +44,9 @@ import transactionGates from "./gates/transaction-gates.js"
 
     // server gates
         // gates to access users in the database
-            server.use("/gates/users", userGates);
+            server.use("/gates/user", UserGate);
         // gates to access transactions in the database
-            server.use("/gates/transactions", transactionGates);
+            server.use("/gates/transaction", TransactionGate);
 
         // serve the the frontend ui
             const viteDistPath = path.join(__dirname, "..", "frontend", "dist")
