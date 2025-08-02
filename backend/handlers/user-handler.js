@@ -1,4 +1,4 @@
-import UserModel from "../models/User-Model.js" // import user model that you created
+import UserModel from "../models/user-model.js" // import user model that you created
 import bcrypt from "bcrypt"
 
 // these are non executable comments but good practice for node development
