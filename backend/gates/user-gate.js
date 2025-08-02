@@ -14,7 +14,7 @@ UserGate.use((req, res, next) => {
 // define the post gate for creating a user
     // when a POST request is made to the path this router is mounted on
     // the 'createUser' function from the handler will be executed. 
-        UserGate.post("/", createUser);
+        UserGate.post("/create", createUser);
 
 // through this gate the user will attempt to login and get authenticated in our system
     UserGate.post("/login", authenticateUser)
