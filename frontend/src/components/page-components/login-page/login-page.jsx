@@ -33,7 +33,7 @@ export const LoginPage = () => {
       }
 
       try {
-        const response = await fetch("https://budgebud.koalattech.app/gates/users", {
+        const response = await fetch("https://budgebud.koalattech.app/gates/user/create", {
           method: "POST",
           headers: {
             "Content-Type" : "application/json",
