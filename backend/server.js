@@ -41,7 +41,7 @@ import HouseholdGate from "./gates/household-gate.js";
         }));
 
     // this middleware is also crucial and caused me major problems when I didn't have it!!!
-        server.use(cookieParser)
+        server.use(cookieParser()) // need to add the () or else the request stays here forever!
     // this line is crucial!! it turns json body requests into js bojects to work with!
         server.use(express.json());
 

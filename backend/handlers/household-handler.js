@@ -5,15 +5,18 @@ import HouseholdModel from "../models/household-model.js";
         // use try...catch block to handle asynchronous errors
             try {
                 // prepare data for household creation
-                    const {name} = req.body;
+                    const {name, owner, members, invite_code} = req.body;
 
                     // ensure household name is provided
-                        if (!name) {
+                        if (!name, !owner, !members, !invite_code) {
                             return res.status(404).json({message: "Please add a household name"})
                         }
                     // otherwise create new household doc in the database
                         const household = await HouseholdModel.create({
-                            name
+                            name,
+                            owner,
+                            members,
+                            invite_code
                         });
                     // send a success response if the household was created
                         if(household) {

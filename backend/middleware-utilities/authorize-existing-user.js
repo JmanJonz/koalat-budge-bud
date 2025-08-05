@@ -15,6 +15,8 @@ import asyncHandler from "express-async-handler";
                 // then you can attach the user's id / anything else to the request object
                 // as it makes this info available for logic in any subsequent middleware logic
                     req.authorizedUserInfo = decoded;
+                // helpful log for me right now while I am learning
+                    console.log(`Currently Logged In As: ${decoded.email}`)
                 // continue onto the next handler / gate in the chain
                     next();
             } catch (error) {
