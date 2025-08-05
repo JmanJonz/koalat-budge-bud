@@ -37,6 +37,7 @@ export const LoginPage = () => {
       try {
         const response = await fetch(`${BACKEND_TARGET_URL}/gates/user/create`, {
           method: "POST",
+          credentials: "include",
           headers: {
             "Content-Type" : "application/json",
           },
@@ -65,6 +66,7 @@ export const LoginPage = () => {
       try {
         const response = await fetch(`${BACKEND_TARGET_URL}/gates/user/login`, {
           method: "POST",
+          credentials: "include",
           headers: {
             "Content-Type" : "application/json",
           },

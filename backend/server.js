@@ -29,7 +29,13 @@ import { reqBodyLogger } from "./middleware-utilities/req-body-logger.js";
 // Middleware! 
     // CORS (Cross-Origin Resource Sharing) Middleware
     // !!! Important in production only allow access to server from my clients
-        server.use(cors());
+        server.use(cors({
+            origin: [
+                "http://localhost:5173",
+                "https://budgebud.koalattech.app"
+            ],
+            credentials: true
+        }));
 
     // this line is crucial!! it turns json body requests into js bojects to work with!
         server.use(express.json());
