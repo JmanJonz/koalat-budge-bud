@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import styles from "./login-page.module.css"
 import { Link } from 'react-router-dom';
+const BACKEND_TARGET_URL = import.meta.env.VITE_BACKEND_TARGET_URL;
+
 
 export const LoginPage = () => {
   const [formErrors, setFormErrors] = useState({});
@@ -33,7 +35,7 @@ export const LoginPage = () => {
       }
 
       try {
-        const response = await fetch("https://budgebud.koalattech.app/gates/user/create", {
+        const response = await fetch(`${BACKEND_TARGET_URL}/gates/user/create`, {
           method: "POST",
           headers: {
             "Content-Type" : "application/json",
@@ -60,7 +62,32 @@ export const LoginPage = () => {
           setServerMessage("A network error occurred. Please try again.")
       }
     } else if (accountActionType === "login") {
-      // login logic would go here
+      try {
+        const response = await fetch(`${BACKEND_TARGET_URL}/gates/user/login`, {
+          method: "POST",
+          headers: {
+            "Content-Type" : "application/json",
+          },
+          body : JSON.stringify({
+            email: formData.email,
+            password: formData.password
+          })
+        })
+        const data = await response.json();
+
+        // check if the response was successful before processing
+          if (response.ok) {
+            console.log("success:", data);
+            setServerMessage("Successfully Logged In")
+          } else {
+            // handle server-side validation or other errors
+              console.error("error", data)
+          }
+      } catch (error) {
+        // catch and handle any network or unexpected errors
+          console.error("fetch error:", error);
+          setServerMessage("A network error occurred. Please try again.")
+      }
     }
   }
 
@@ -79,7 +106,7 @@ export const LoginPage = () => {
         onSubmit={loginOrCreateAccount}
         className={styles.formcontainer}>
           <h2>Account</h2>
-          <Link to={"/Menu-Page"}><img className={styles.logo} src="/512ktbudgebudiconlogo.png" alt="logo" /></Link>
+          <Link to={"/menu-page"}><img className={styles.logo} src="/512ktbudgebudiconlogo.png" alt="logo" /></Link>
             <section>
                 <div className={styles.accountActionTypeButtonsContainer}>
                   <button className={`${styles.transButtons} ${accountActionType === "login" ? styles.buttonSelected : ""}`} onClick={()=>{setaccountActionType("login")}} type='button'>Login</button>

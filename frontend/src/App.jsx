@@ -9,8 +9,8 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<TranzTrakrPage/>}/>
-        <Route path="/Menu-Page" element={<MenuPage/>}/>
-        <Route path="/Login-Page" element={<LoginPage/>}/>
+        <Route path="/menu-page" element={<MenuPage/>}/>
+        <Route path="/login-page" element={<LoginPage/>}/>
       </Routes>
     </BrowserRouter>
     </>
