@@ -79,7 +79,56 @@ import jwt from "jsonwebtoken";
 // function that handles logging a user in an authenticating them in a way where they don't have to relogin over and over
     export const authenticateUser = async (req, res) => {
         // logic to find and validate user from the database
-            console.log("hitting login gate and authenticate function")
+            const {email, password} = req.body;
+        // check if the user exists in the database by their identifier their email...
+            const user = await UserModel.findOne({email});
+            if (!user) {
+                return res.status(401).json({message: "Invalid credentials"});
+            }
+        // compare incoming password with the stored hashed password using bcrypt
+            const isMatch = await bcrypt.compare(password, user.password);
+            if (!isMatch) {
+                return res.status(401).json({message: "Invalid credentials"});
+            }
+        // otherwise the user is authenticated so setup saved login for sub request
+            // this is the information that will be baked into the jwt and come in with every request from the user
+                const payload = {
+                    _id : user._id,
+                    email : user.email,
+                    tier : user.tier
+                };
+                const cookieOptions = {
+                    // 1. Mark the cookie as HttpOnly
+                    // This prevents client-side JavaScript from accessing it.
+                    httpOnly: true,
+
+                    // 2. Set the cookie's expiration
+                    // This should match the JWT's expiration.
+                    maxAge: 60 * 60 * 1000, // 1 hour in milliseconds
+
+                    // 3. Make it Secure (recommended for production)
+                    // The browser will only send this cookie over HTTPS.
+                    // In development, you might set this to `false`.
+                    secure: false,// process.env.NODE_ENV === "production",
+
+                    // 4. Set SameSite (important for CSRF protection)
+                    // Prevents the browser from sending the cookie with cross-site requests.
+                    // For most modern use cases, 'Lax' or 'Strict' is best.
+                    sameSite: "Lax",
+                };
+            // generate the JSON Web Token (JWT) signed with a secret hashed passkey
+            // so we know that we were the one that gave it to this person
+            // and it should mean they are who they say they are unless someone else gets ahold of it
+                const token = jwt.sign(payload, process.env.JWT_SECRET, {expiresIn: "1hr"});
+                // send a 200 OK response with the JWT
+                    res.cookie("jsonWebToken", token, cookieOptions)
+                    res.status(200).json({
+                        message: "Login successful!",
+                        user: {
+                            id: user._id,
+                            email: user.email,
+                        },
+                    });
     }
 
 export {createUser}; // since you exported an object you will want to destructure the object upon import to get what you want from inside it...

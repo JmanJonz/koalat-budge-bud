@@ -7,6 +7,7 @@ import path from "path";
 import { fileURLToPath } from "url"; 
 import UserGate from "./gates/user-gate.js"
 import TransactionGate from "./gates/transaction-gate.js"
+import { reqBodyLogger } from "./middleware-utilities/req-body-logger.js";
 
 // environment and path setupppp
 // this is important becasue the database function below will use these variables...
@@ -32,6 +33,9 @@ import TransactionGate from "./gates/transaction-gate.js"
 
     // this line is crucial!! it turns json body requests into js bojects to work with!
         server.use(express.json());
+
+    // request logging middleware!
+        server.use(reqBodyLogger)
 
     // --- NEW: Request Logging Middleware ---
     // This middleware will log every incoming request's method and URL
