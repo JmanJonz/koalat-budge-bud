@@ -1,3 +1,5 @@
+
+import cookieParser from "cookie-parser";
 import express from "express";
 import dotenv from "dotenv";
 import connectMongoDB from "./config/mongo_db.js";
@@ -8,6 +10,7 @@ import { fileURLToPath } from "url";
 import UserGate from "./gates/user-gate.js"
 import TransactionGate from "./gates/transaction-gate.js"
 import { reqBodyLogger } from "./middleware-utilities/req-body-logger.js";
+import HouseholdGate from "./gates/household-gate.js";
 
 // environment and path setupppp
 // this is important becasue the database function below will use these variables...
@@ -37,6 +40,8 @@ import { reqBodyLogger } from "./middleware-utilities/req-body-logger.js";
             credentials: true
         }));
 
+    // this middleware is also crucial and caused me major problems when I didn't have it!!!
+        server.use(cookieParser)
     // this line is crucial!! it turns json body requests into js bojects to work with!
         server.use(express.json());
 
@@ -55,6 +60,10 @@ import { reqBodyLogger } from "./middleware-utilities/req-body-logger.js";
     // server gates
         // gates to access users in the database
             server.use("/gates/user", UserGate);
+
+        // househld gate offers
+            server.use("/gates/household", HouseholdGate)
+
         // gates to access transactions in the database
             server.use("/gates/transaction", TransactionGate);
 

@@ -5,6 +5,7 @@ export const reqBodyLogger = (req, res, next) => {
     if (req.body && Object.keys(req.body).length > 0) {
         // Log a header and then the body content
         console.log("-------------------- Incoming Request Body --------------------");
+        console.log(`From: ${req.ip}`)
         console.log(req.body);
         console.log("---------------------------------------------------------------");
     } else {

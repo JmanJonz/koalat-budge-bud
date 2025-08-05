@@ -1,14 +1,13 @@
 import express from "express";
-import { createTransaction } from "../handlers/transaction-handler.js";
 import { authorizeExistingUser } from "../middleware-utilities/authorize-existing-user.js";
-
-const TransactionGate = express.Router(); // creates an express router instance
+import { createHousehold } from "../handlers/household-handler.js";
+const HouseholdGate = express.Router(); // creates an express router instance
 
 // define the post gate for creating a Transaction
     // when a POST request is made to the path this router is mounted on
     // the 'createTransaction' function from the handler will be executed. 
-        TransactionGate.post("/create", authorizeExistingUser, createTransaction);
+        HouseholdGate.post("/create", authorizeExistingUser, createHousehold);
 
 // you can add other Transaction-related gates here (eg router.get by id update etc)
 
-export default TransactionGate; // export this instance of the express router to be used in server.js
+export default HouseholdGate; // export this instance of the express router to be used in server.js
