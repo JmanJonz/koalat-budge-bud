@@ -4,20 +4,45 @@ import { Link } from 'react-router-dom';
 
 export const TranzTrakrPage = () => {
   const [transType, setTransType] = useState(null);
+  const [formData, setFormData] = useState({
+    type : transType,
+    category_id : null,
+    sub_category_id : null,
+    user_id : null,
+    household_id : null,
+    amount : 0
+
+  })
+
+  const trackTransAction = async (event) => {
+    event.preventDefault()
+    console.log("Form submitted")
+    for (const key in formData) {
+      console.log(formData[key]);
+    }
+  }
+
+  const updateFormData = (event) => {
+    console.log(`event target name : ${event.target.name} & value ${event.target.value}`)
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [event.target.name]: event.target.value
+    }))
+  }
   return (
     <div className={styles.componentContainer}>
-        <form className={styles.formcontainer}>
+        <form onSubmit={trackTransAction} className={styles.formcontainer}>
           <h2>Tranz Trakr</h2>
           <Link to={"/Menu-Page"}><img className={styles.logo} src="/512ktbudgebudiconlogo.png" alt="logo" /></Link>
             <section>
                 <div className={styles.transTypeButtonsContainer}>
-                  <button className={`${styles.transButtons} ${transType === "inflow" ? styles.buttonSelected : ""}`} onClick={()=>{setTransType("inflow")}} type='button'>Inflow</button>
-                  <button className={`${styles.transButtons} ${transType === "outflow" ? styles.buttonSelected : ""}`} onClick={()=>{setTransType("outflow")}} type='button'>Outflow</button>
+                  <button onChange={updateFormData} name='type' className={`${styles.transButtons} ${transType === "inflow" ? styles.buttonSelected : ""}`} onClick={()=>{setTransType("inflow")}} type='button'>Inflow</button>
+                  <button onChange={updateFormData} name='type' className={`${styles.transButtons} ${transType === "outflow" ? styles.buttonSelected : ""}`} onClick={()=>{setTransType("outflow")}} type='button'>Outflow</button>
                 </div>
             </section>
             <section>
                 <h4>Cat</h4>
-                <select name="category" id="" className={styles.categoryDropdown}>
+                <select onChange={updateFormData} name="category" id="" className={styles.categoryDropdown}>
                     <option value="" disabled selected hidden>-- Please select an option --</option>
                   <option value="basic-needs">Basic Needs</option>
                   <option value="serving-those-in-need">Serving Those In Need</option>
@@ -27,7 +52,7 @@ export const TranzTrakrPage = () => {
             </section>
             <section>
                 <h4>Sub Cat</h4>
-                <select name="category" id="" className={styles.categoryDropdown}>
+                <select onChange={updateFormData} name="subCategory" id="" className={styles.categoryDropdown}>
                     <option value="" disabled selected hidden>-- Please select an option --</option>
                   <option value="groceries">Groceries</option>
                   <option value="gas">Gas</option>
@@ -40,8 +65,13 @@ export const TranzTrakrPage = () => {
             </section>
             <section>
                 <h4>Mount</h4>
-                <input type="number" className={styles.inputAmount} />
+                <input onChange={updateFormData} name='amount' type="number" className={styles.inputAmount} />
             </section>
+            <button
+              className={styles.submitButton}
+              type='submit'
+              >Create KoalaT Tech Account
+            </button>
         </form>
     </div>
   )
