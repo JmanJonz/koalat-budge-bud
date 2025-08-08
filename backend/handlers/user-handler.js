@@ -95,6 +95,7 @@ import jwt from "jsonwebtoken";
                 const payload = {
                     _id : user._id,
                     email : user.email,
+                    household : user.household,
                     tier : user.tier
                 };
                 const cookieOptions = {

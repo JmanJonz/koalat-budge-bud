@@ -16,7 +16,7 @@ import asyncHandler from "express-async-handler";
                 // as it makes this info available for logic in any subsequent middleware logic
                     req.authorizedUserInfo = decoded;
                 // helpful log for me right now while I am learning
-                    console.log(`Currently Logged In As: ${decoded.email}`)
+                    console.log(`Currently Logged In As: ${decoded.email} and you are apart of the ${decoded.household} household`)
                 // continue onto the next handler / gate in the chain
                     next();
             } catch (error) {
