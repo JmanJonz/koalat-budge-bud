@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import styles from "./login-page.module.css"
 import { Link } from 'react-router-dom';
+import { currentUserAtom } from '../../../atoms';
+import { useAtom } from 'jotai';
 const BACKEND_TARGET_URL = import.meta.env.VITE_BACKEND_TARGET_URL;
 
 
@@ -14,6 +16,7 @@ export const LoginPage = () => {
     "password" : "",
     "confirmPassword" : ""
   });
+  const [currentUser, setCurrentUser] = useAtom(currentUserAtom);
 
   // tempoary logs
     	// This effect runs every time the formData state changes
@@ -80,6 +83,7 @@ export const LoginPage = () => {
         // check if the response was successful before processing
           if (response.ok) {
             console.log("success:", data);
+            setCurrentUser(data.user.email);
             setServerMessage("Successfully Logged In")
           } else {
             // handle server-side validation or other errors
@@ -103,6 +107,7 @@ export const LoginPage = () => {
     });
   }
   return (
+    
     <div className={styles.componentContainer}>
         <form 
         onSubmit={loginOrCreateAccount}
@@ -152,8 +157,10 @@ export const LoginPage = () => {
             <button
             className={styles.submitButton}
             type='submit'
-            >Create KoalaT Tech Account</button>
+            >{accountActionType}</button>
         </form>
+        <p>Logged In As: {currentUser}</p>
     </div>
+    
   )
 }

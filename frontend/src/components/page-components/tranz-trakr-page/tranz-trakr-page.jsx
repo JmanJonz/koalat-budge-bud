@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import styles from "./tranz-trakr-page.module.css"
 import { Link } from 'react-router-dom';
+import { currentUserAtom } from '../../../atoms';
+import { useAtomValue } from 'jotai';
+const BACKEND_TARGET_URL = import.meta.env.VITE_BACKEND_TARGET_URL;
+
+
 
 export const TranzTrakrPage = () => {
   const [transType, setTransType] = useState(null);
+  const [categories, setCategories] = useState([]);
   const [formData, setFormData] = useState({
     type : transType,
     category_id : null,
@@ -13,11 +19,12 @@ export const TranzTrakrPage = () => {
     amount : 0
 
   })
+  const currentUser = useAtomValue(currentUserAtom)
 
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await fetch("/gates/category/get-cats", {
+        const response = await fetch(`${BACKEND_TARGET_URL}/gates/category/get-cats`, {
           method: "GET",
           credentials: "include"
         })
@@ -31,6 +38,7 @@ export const TranzTrakrPage = () => {
         
         // await the parsed data
           const data = await response.json();
+          setCategories(data.categories);
           console.log("categoriy data fetched on frontend", data)
       } catch (error) {
         console.log("fetching error", error)
@@ -72,10 +80,9 @@ export const TranzTrakrPage = () => {
                 <h4>Cat</h4>
                 <select onChange={updateFormData} name="category" id="" className={styles.categoryDropdown}>
                     <option value="" disabled selected hidden>-- Please select an option --</option>
-                  <option value="basic-needs">Basic Needs</option>
-                  <option value="serving-those-in-need">Serving Those In Need</option>
-                  <option value="enjoying-life-now">Enjoying Life Now</option>
-                  <option value="investing-in-a-better-future">Investing In A Better Future</option>
+                    {categories.map((category) => (
+                      <option key={category._id} value={category.category_name}>{category.category_name}</option>
+                    ))}
                 </select>
             </section>
             <section>
@@ -101,6 +108,7 @@ export const TranzTrakrPage = () => {
               >Track
             </button>
         </form>
+        <p>Logged In As: {currentUser}</p>
     </div>
   )
 }
