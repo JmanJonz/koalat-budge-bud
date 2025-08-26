@@ -11,6 +11,7 @@ import UserGate from "./gates/user-gate.js"
 import TransactionGate from "./gates/transaction-gate.js"
 import { reqBodyLogger } from "./middleware-utilities/req-body-logger.js";
 import HouseholdGate from "./gates/household-gate.js";
+import CategoryGate from "./gates/category-gate.js";
 
 // environment and path setupppp
 // this is important becasue the database function below will use these variables...
@@ -66,6 +67,9 @@ import HouseholdGate from "./gates/household-gate.js";
 
         // gates to access transactions in the database
             server.use("/gates/transaction", TransactionGate);
+
+        // gate to access category functinality / data base ops
+            server.use("/gates/category", CategoryGate)
 
         // serve the the frontend ui
             const viteDistPath = path.join(__dirname, "..", "frontend", "dist")

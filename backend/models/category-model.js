@@ -12,14 +12,14 @@ const categorySchema = new mongoose.Schema({
     // type of transaction this category applies to ("income" or "expense")
     category_type: {
         type: String,
-        enum: ["income", "expense"],
-        required: [true, "Category type (income/expense) is required."]
+        enum: ["inflow", "outflow"],
+        required: [true, "Category type (inflow/outflow) is required."]
     },
     // reference to the User who owns this category (if not in a household)
     user_id: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
-        required: false // Now optional
+        required: true // Now optional
     },
     // reference to the Household this category belongs to (if user is in a household)
     household_id: { // Database/Schema/Table/Entity/Column Name: snake_case

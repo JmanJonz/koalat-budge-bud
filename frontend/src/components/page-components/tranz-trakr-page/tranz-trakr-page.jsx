@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from "./tranz-trakr-page.module.css"
 import { Link } from 'react-router-dom';
 
@@ -13,6 +13,34 @@ export const TranzTrakrPage = () => {
     amount : 0
 
   })
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await fetch("/gates/category/get-cats", {
+          method: "GET",
+          credentials: "include"
+        })
+
+        // check if response was successful
+          if (!response.ok) {
+            throw new Error(
+              "HTTP Error when getting categories on frontend"
+            )
+          }
+        
+        // await the parsed data
+          const data = await response.json();
+          console.log("categoriy data fetched on frontend", data)
+      } catch (error) {
+        console.log("fetching error", error)
+      }
+    }
+
+    fetchCategories()
+  }, [])
+
+
 
   const trackTransAction = async (event) => {
     event.preventDefault()
@@ -70,7 +98,7 @@ export const TranzTrakrPage = () => {
             <button
               className={styles.submitButton}
               type='submit'
-              >Create KoalaT Tech Account
+              >Track
             </button>
         </form>
     </div>

@@ -2,6 +2,7 @@ import UserModel from "../models/user-model.js" // import user model that you cr
 import bcrypt from "bcrypt"
 import dotenv from "dotenv";
 import jwt from "jsonwebtoken";
+import HouseholdModel from "../models/household-model.js";
 
 // code that is ran when this file is imported
     dotenv.config();
@@ -91,11 +92,35 @@ import jwt from "jsonwebtoken";
                 return res.status(401).json({message: "Invalid credentials"});
             }
         // otherwise the user is authenticated so setup saved login for sub request
+
+        // check if the user is apart of a house hold and if so add their household id into the payload so it can be easily accessed later
+            const findHouseholdByUser = async (userId) => {
+                console.log("findhousehold function running");
+                try {
+                    //find household where the user id exists in members array
+                        const usersHousehold = await HouseholdModel.findOne({
+                            members: userId
+                        })
+
+                    // check if a household was found
+                        if (usersHousehold) {
+                            console.log("household found", usersHousehold)
+                            return usersHousehold
+                        } else {
+                            "no household for user found"
+                        }
+                        
+                } catch (error) {
+                    console.error("Error finding household:", error);
+                }
+            }
+
+            const userHousehold = await findHouseholdByUser(user._id)
             // this is the information that will be baked into the jwt and come in with every request from the user
                 const payload = {
-                    _id : user._id,
+                    userId : user._id,
+                    householdId: userHousehold._id,
                     email : user.email,
-                    household : user.household,
                     tier : user.tier
                 };
                 const cookieOptions = {
