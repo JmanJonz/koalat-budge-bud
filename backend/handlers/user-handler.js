@@ -19,6 +19,15 @@ import HouseholdModel from "../models/household-model.js";
 // @route POST /gates/users
 // @access Public
 
+// get the user info for the user bearing the authenticated token
+    export const getCurrentUserInfo = async (req, res) => {
+        // if there is an authorized user who made this request it should have
+        // passed through my authorization middleware and attached their info 
+        // to the req object...
+            console.log("get current user info is running here is there info we want to get over to the frontend", req.authorizedUserInfo)
+            return res.status(200).json(req.authorizedUserInfo);
+    }
+
 // This function handles the logic for creating a new user in the database.
     const createUser = async (req, res) => {
         // 1. destructure user data from the request body
@@ -119,7 +128,8 @@ import HouseholdModel from "../models/household-model.js";
             // this is the information that will be baked into the jwt and come in with every request from the user
                 const payload = {
                     userId : user._id,
-                    householdId: userHousehold._id,
+                    username : user.username,
+                    householdId: userHousehold != null ? userHousehold._id : null,
                     email : user.email,
                     tier : user.tier
                 };
@@ -152,6 +162,7 @@ import HouseholdModel from "../models/household-model.js";
                         message: "Login successful!",
                         user: {
                             id: user._id,
+                            username: user.username,
                             email: user.email,
                         },
                     });

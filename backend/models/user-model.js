@@ -24,11 +24,6 @@ const userSchema = mongoose.Schema(
             type: String,
             enum: ["free", "paid"],
             default: "free",
-        },
-        household_id : { // for linking to other accounts
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Household",
-            default: null
         }
     },
     {

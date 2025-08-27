@@ -3,6 +3,7 @@ import styles from "./login-page.module.css"
 import { Link } from 'react-router-dom';
 import { currentUserAtom } from '../../../atoms';
 import { useAtom } from 'jotai';
+import { DropDownMessage } from '../../reusable-components/drop-down-message.jsx';
 const BACKEND_TARGET_URL = import.meta.env.VITE_BACKEND_TARGET_URL;
 
 
@@ -16,7 +17,7 @@ export const LoginPage = () => {
     "password" : "",
     "confirmPassword" : ""
   });
-  const [currentUser, setCurrentUser] = useAtom(currentUserAtom);
+  const [currentUserData,setCurrentUserData] = useAtom(currentUserAtom);
 
   // tempoary logs
     	// This effect runs every time the formData state changes
@@ -55,7 +56,9 @@ export const LoginPage = () => {
         // check if the response was successful before processing
           if (response.ok) {
             console.log("success:", data);
+            setaccountActionType("login")
             setServerMessage("Account created successfully!")
+
           } else {
             // handle server-side validation or other errors
               console.error("error", data)
@@ -83,8 +86,8 @@ export const LoginPage = () => {
         // check if the response was successful before processing
           if (response.ok) {
             console.log("success:", data);
-            setCurrentUser(data.user.email);
-            setServerMessage("Successfully Logged In")
+            setCurrentUserData(data.user.username);
+            setServerMessage(`Logged In As ${currentUserData}`)
           } else {
             // handle server-side validation or other errors
               console.error("error", data)
@@ -157,9 +160,9 @@ export const LoginPage = () => {
             <button
             className={styles.submitButton}
             type='submit'
-            >{accountActionType}</button>
+            >{accountActionType === "login" ? "Login" : "Create"}</button>
+            <DropDownMessage message={serverMessage}></DropDownMessage>
         </form>
-        <p>Logged In As: {currentUser}</p>
     </div>
     
   )

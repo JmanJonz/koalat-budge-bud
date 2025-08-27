@@ -3,6 +3,7 @@ import styles from "./tranz-trakr-page.module.css"
 import { Link } from 'react-router-dom';
 import { currentUserAtom } from '../../../atoms';
 import { useAtomValue } from 'jotai';
+import { CurrentUserFlag } from '../../reusable-components/current-user-flag/current-user-flag';
 const BACKEND_TARGET_URL = import.meta.env.VITE_BACKEND_TARGET_URL;
 
 
@@ -68,6 +69,7 @@ export const TranzTrakrPage = () => {
   return (
     <div className={styles.componentContainer}>
         <form onSubmit={trackTransAction} className={styles.formcontainer}>
+          <CurrentUserFlag username={currentUser != null ? currentUser.username : "hey"}></CurrentUserFlag>
           <h2>Tranz Trakr</h2>
           <Link to={"/Menu-Page"}><img className={styles.logo} src="/512ktbudgebudiconlogo.png" alt="logo" /></Link>
             <section>
@@ -108,7 +110,6 @@ export const TranzTrakrPage = () => {
               >Track
             </button>
         </form>
-        <p>Logged In As: {currentUser}</p>
     </div>
   )
 }

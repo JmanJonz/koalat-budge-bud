@@ -1,12 +1,17 @@
 import express from "express";
-import { authenticateUser, createUser } from "../handlers/user-handler.js";
+import { authenticateUser, createUser, getCurrentUserInfo } from "../handlers/user-handler.js";
 import { createGateTrafficLogger } from "../middleware-utilities/gate-traffic-logger.js";
+import { authorizeExistingUser } from "../middleware-utilities/authorize-existing-user.js";
 const UserGate = express.Router(); // creates an express router instance
 
 // log traffic through this gate
     const userTrafficLogger = createGateTrafficLogger("User");
     UserGate.use(userTrafficLogger)
 
+// endpoint gives the frontend important user info for it to use programatically
+// since it can't programatically get it from the http only cookie even tho it is right 
+// there!!
+    UserGate.get("/current-user-info", authorizeExistingUser, getCurrentUserInfo);
 
 // define the post gate for creating a user
     // when a POST request is made to the path this router is mounted on
