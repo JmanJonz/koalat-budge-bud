@@ -3,4 +3,9 @@
     color: white;
     margin-top: 10px;
     text-align: center;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -25%);
+    top:-6px;
+    padding: 4px;
 }

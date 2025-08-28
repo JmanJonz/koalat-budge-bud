@@ -69,7 +69,7 @@ export const TranzTrakrPage = () => {
   return (
     <div className={styles.componentContainer}>
         <form onSubmit={trackTransAction} className={styles.formcontainer}>
-          <CurrentUserFlag username={currentUser != null ? currentUser.username : "hey"}></CurrentUserFlag>
+          <CurrentUserFlag username={currentUser != null ? currentUser.username : ""}></CurrentUserFlag>
           <h2>Tranz Trakr</h2>
           <Link to={"/Menu-Page"}><img className={styles.logo} src="/512ktbudgebudiconlogo.png" alt="logo" /></Link>
             <section>
