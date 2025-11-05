@@ -21,6 +21,6 @@ const UserGateway = express.Router(); // creates an express router instance
 // through this gate the user will attempt to login and get authenticated in our system
     UserGateway.post("/login", authenticateUser)
 
-// you can add other user-related gates here (eg router.get by id update etc)
+// you can add other user-related gateways here (eg router.get by id update etc)
 
 export default UserGateway; // export this instance of the express router to be used in server.js

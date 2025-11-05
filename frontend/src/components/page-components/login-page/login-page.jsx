@@ -39,7 +39,7 @@ export const LoginPage = () => {
       }
 
       try {
-        const response = await fetch(`${BACKEND_TARGET_URL}/gates/user/create`, {
+        const response = await fetch(`${BACKEND_TARGET_URL}/gateways/user/create`, {
           method: "POST",
           credentials: "include",
           headers: {
@@ -70,7 +70,7 @@ export const LoginPage = () => {
       }
     } else if (accountActionType === "login") {
       try {
-        const response = await fetch(`${BACKEND_TARGET_URL}/gates/user/login`, {
+        const response = await fetch(`${BACKEND_TARGET_URL}/gateways/user/login`, {
           method: "POST",
           credentials: "include",
           headers: {

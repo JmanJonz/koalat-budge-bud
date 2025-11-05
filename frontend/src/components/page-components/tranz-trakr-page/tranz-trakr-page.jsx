@@ -22,10 +22,16 @@ export const TranzTrakrPage = () => {
   })
   const currentUser = useAtomValue(currentUserAtom)
 
+  // Helper variable to check if the user is authenticated (assuming user has a unique _id)
+    // This will be null/false on the first render, and true/object on the second render.
+    const userIsAuthenticated = currentUser && currentUser._id;
+
   useEffect(() => {
-    const fetchCategories = async () => {
+    console.log("in transtrackerpage useeffect running on pre render... here is data set using jotai atom for current user", currentUser)
+    if (userIsAuthenticated) {
+      const fetchCategories = async () => {
       try {
-        const response = await fetch(`${BACKEND_TARGET_URL}/gates/category/get-cats`, {
+        const response = await fetch(`${BACKEND_TARGET_URL}/gateways/category/get-cats`, {
           method: "GET",
           credentials: "include"
         })
@@ -47,7 +53,8 @@ export const TranzTrakrPage = () => {
     }
 
     fetchCategories()
-  }, [])
+    }
+  }, [userIsAuthenticated, currentUser])
 
 
 

@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 import jwt from "jsonwebtoken";
 import HouseholdModel from "../household/household-model.js";
 
-// code that is ran when this file is imported
+// code that is ran when this file is imported 
     dotenv.config();
 
 // generate a new token
@@ -16,7 +16,7 @@ import HouseholdModel from "../household/household-model.js";
 
 // these are non executable comments but good practice for node development
 // @desc Create a new user
-// @route POST /gates/users
+// @route POST /gateways/users
 // @access Public
 
 // get the user info for the user bearing the authenticated token

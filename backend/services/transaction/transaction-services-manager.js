@@ -2,7 +2,7 @@ import TransactionModel from "../transaction/transaction-model.js";
 
 // these are non executable comments but good practice for node development
 // @desc Create a new transaction
-// @route POST /gates/transactions
+// @route POST /gateways/transactions
 // @access Public
 
 // This function handles the logic for creating a new transaction in the database.

@@ -16,7 +16,7 @@ function App() {
         // useEffect callback can't be asyn directly... wrtie asycn funcion and call it
           const fetchCurrentUserData = async () => {
             try {
-              const response = await fetch(`${BACKEND_TARGET_URL}/gates/user/current-user-info`, {
+              const response = await fetch(`${BACKEND_TARGET_URL}/gateways/user/current-user-info`, {
                 credentials: 'include' // won't send http only cookies without this!!
               });
 
@@ -27,6 +27,8 @@ function App() {
                     console.log("current logged in user data from app render", data)
                   // store logged in user in a global storage
                     setCurrentUserData(data);
+                  // this is currentuserdata state as accessed from jotai atom
+                    console.log(currentUserData, "this is the data from atom")
 
               } else {
                 console.log("No authenticated user found.")

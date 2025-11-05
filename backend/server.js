@@ -12,6 +12,7 @@ import TransactionGateway from "./services/transaction/transaction-services-gate
 import { reqBodyLogger } from "./utilities/req-body-logger.js";
 import HouseholdGateway from "./services/household/household-services-gateway.js";
 import CategoryGateway from "./services/category/category-services-gateway.js";
+import subCategoryGateway from "./services/sub-category/sub-category-services-gateway.js";
 
 // environment and path setupppp
 // this is important becasue the database function below will use these variables...
@@ -51,25 +52,28 @@ import CategoryGateway from "./services/category/category-services-gateway.js";
 
     // --- NEW: Request Logging Middleware ---
     // This middleware will log every incoming request's method and URL
-    // It should be placed BEFORE your specific gates (app.use("/api/users", userGates))
+    // It should be placed BEFORE your specific gateways (app.use("/api/users", usergateways))
     server.use((req, res, next) => {
         console.log(`[${new Date().toISOString()}] Incoming Request: ${req.method} ${req.originalUrl}`);
         next(); // Pass control to the next middleware/route handler
     });
     // --- END NEW Request Logging Middleware ---
 
-    // server gates
-        // gates to access users in the database
-            server.use("/gates/user", UserGateway);
+    // server gateways
+        // gateways to access users in the database
+            server.use("/gateways/user", UserGateway);
 
         // househld gate offers
-            server.use("/gates/household", HouseholdGateway)
+            server.use("/gateways/household", HouseholdGateway)
 
-        // gates to access transactions in the database
-            server.use("/gates/transaction", TransactionGateway);
+        // gateways to access transactions in the database
+            server.use("/gateways/transaction", TransactionGateway);
 
         // gate to access category functinality / data base ops
-            server.use("/gates/category", CategoryGateway)
+            server.use("/gateways/category", CategoryGateway)
+
+        // gateway to sub category services
+            server.use("/gateways/sub-cats", subCategoryGateway)
 
         // serve the the frontend ui
             const viteDistPath = path.join(__dirname, "..", "frontend", "dist")
