@@ -1,4 +1,4 @@
-import HouseholdModel from "../models/household-model.js";
+import HouseholdModel from "../household/household-model.js";
 
 // function will attempt to create a new household using the data in the req
     const createHousehold = async (req, res) => {

@@ -7,11 +7,11 @@ import cors from "cors"
 import colors from "colors";
 import path from "path";
 import { fileURLToPath } from "url"; 
-import UserGate from "./gates/user-gate.js"
-import TransactionGate from "./gates/transaction-gate.js"
-import { reqBodyLogger } from "./middleware-utilities/req-body-logger.js";
-import HouseholdGate from "./gates/household-gate.js";
-import CategoryGate from "./gates/category-gate.js";
+import UserGateway from "./services/user/user-services-gateway.js";
+import TransactionGateway from "./services/transaction/transaction-services-gateway.js";
+import { reqBodyLogger } from "./utilities/req-body-logger.js";
+import HouseholdGateway from "./services/household/household-services-gateway.js";
+import CategoryGateway from "./services/category/category-services-gateway.js";
 
 // environment and path setupppp
 // this is important becasue the database function below will use these variables...
@@ -60,16 +60,16 @@ import CategoryGate from "./gates/category-gate.js";
 
     // server gates
         // gates to access users in the database
-            server.use("/gates/user", UserGate);
+            server.use("/gates/user", UserGateway);
 
         // househld gate offers
-            server.use("/gates/household", HouseholdGate)
+            server.use("/gates/household", HouseholdGateway)
 
         // gates to access transactions in the database
-            server.use("/gates/transaction", TransactionGate);
+            server.use("/gates/transaction", TransactionGateway);
 
         // gate to access category functinality / data base ops
-            server.use("/gates/category", CategoryGate)
+            server.use("/gates/category", CategoryGateway)
 
         // serve the the frontend ui
             const viteDistPath = path.join(__dirname, "..", "frontend", "dist")

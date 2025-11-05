@@ -1,4 +1,4 @@
-import CategoryModel from "../models/category-model.js";
+import CategoryModel from "../category/category-model.js";
 
 // get all categories for household if there is one and user if not
     export const getCategories = async (req, res) => {

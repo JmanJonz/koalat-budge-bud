@@ -1,8 +1,8 @@
-import UserModel from "../models/user-model.js" // import user model that you created
+import UserModel from "../user/user-model.js" // import user model that you created
 import bcrypt from "bcrypt"
 import dotenv from "dotenv";
 import jwt from "jsonwebtoken";
-import HouseholdModel from "../models/household-model.js";
+import HouseholdModel from "../household/household-model.js";
 
 // code that is ran when this file is imported
     dotenv.config();

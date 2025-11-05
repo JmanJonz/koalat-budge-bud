@@ -1,26 +1,26 @@
 import express from "express";
-import { authenticateUser, createUser, getCurrentUserInfo } from "../handlers/user-handler.js";
-import { createGateTrafficLogger } from "../middleware-utilities/gate-traffic-logger.js";
-import { authorizeExistingUser } from "../middleware-utilities/authorize-existing-user.js";
-const UserGate = express.Router(); // creates an express router instance
+import { authenticateUser, createUser, getCurrentUserInfo } from "../user/user-services-manager.js"
+import { createGateTrafficLogger } from "../../utilities/gateway-traffic-logger.js";
+import { authorizeExistingUser } from "../../utilities/authorize-existing-user.js";
+const UserGateway = express.Router(); // creates an express router instance
 
 // log traffic through this gate
     const userTrafficLogger = createGateTrafficLogger("User");
-    UserGate.use(userTrafficLogger)
+    UserGateway.use(userTrafficLogger)
 
 // endpoint gives the frontend important user info for it to use programatically
 // since it can't programatically get it from the http only cookie even tho it is right 
 // there!!
-    UserGate.get("/current-user-info", authorizeExistingUser, getCurrentUserInfo);
+    UserGateway.get("/current-user-info", authorizeExistingUser, getCurrentUserInfo);
 
 // define the post gate for creating a user
     // when a POST request is made to the path this router is mounted on
     // the 'createUser' function from the handler will be executed. 
-        UserGate.post("/create", createUser);
+        UserGateway.post("/create", createUser);
 
 // through this gate the user will attempt to login and get authenticated in our system
-    UserGate.post("/login", authenticateUser)
+    UserGateway.post("/login", authenticateUser)
 
 // you can add other user-related gates here (eg router.get by id update etc)
 
-export default UserGate; // export this instance of the express router to be used in server.js
+export default UserGateway; // export this instance of the express router to be used in server.js
