@@ -35,7 +35,7 @@ import SubCategoryModel from "./sub-category-model.js";
 // get all sub cats linked to a specific cat
     export const getSubCats = async (req, res) => {
         console.log("get sub cats process service running")
-        const {parentCatID} = req.body;
+        const {parentCatID} = req.query;
         try {
             const subCats = await SubCategoryModel.find({
                 parent_category_id : parentCatID
