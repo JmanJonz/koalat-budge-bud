@@ -32,7 +32,7 @@ h2 {
 }
 
 .message {
-  background: #4CAF50;
+  background: #84A98C;
   color: white;
   padding: 12px 20px;
   margin-bottom: 20px;
@@ -70,30 +70,30 @@ h2 {
 }
 
 .primaryButton {
-  background: #4CAF50;
+  background: #84A98C;
   color: white;
 }
 
 .primaryButton:hover {
-  background: #45a049;
+  background: #6B8B73;
 }
 
 .secondaryButton {
-  background: #2196F3;
+  background: #52796F;
   color: white;
 }
 
 .secondaryButton:hover {
-  background: #0b7dda;
+  background: #3D5A51;
 }
 
 .submitButton {
-  background: #4CAF50;
+  background: #84A98C;
   color: white;
 }
 
 .submitButton:hover {
-  background: #45a049;
+  background: #6B8B73;
 }
 
 .cancelButton {
@@ -106,13 +106,13 @@ h2 {
 }
 
 .dangerButton {
-  background: #f44336;
+  background: #B87F6F;
   color: white;
   margin-top: 20px;
 }
 
 .dangerButton:hover {
-  background: #da190b;
+  background: #A06B5B;
 }
 
 .form {
@@ -194,22 +194,22 @@ h2 {
   font-family: 'Courier New', monospace;
   font-size: 24px;
   font-weight: bold;
-  color: #2196F3;
+  color: #52796F;
   letter-spacing: 2px;
   padding: 10px 15px;
-  background: #f0f8ff;
+  background: #E8F3EE;
   border-radius: 4px;
-  border: 2px solid #2196F3;
+  border: 2px solid #52796F;
 }
 
 .copyButton {
-  background: #2196F3;
+  background: #52796F;
   color: white;
   padding: 10px 20px;
 }
 
 .copyButton:hover {
-  background: #0b7dda;
+  background: #3D5A51;
 }
 
 .hint {
@@ -245,17 +245,17 @@ h2 {
 }
 
 .infoBox {
-  background: #e3f2fd;
+  background: #E8F3EE;
   padding: 20px;
   border-radius: 8px;
   margin-top: 30px;
-  border-left: 4px solid #2196F3;
+  border-left: 4px solid #52796F;
 }
 
 .infoBox h4 {
   margin-top: 0;
   margin-bottom: 15px;
-  color: #1976D2;
+  color: #3D5A51;
 }
 
 .infoBox ul {
@@ -267,4 +267,63 @@ h2 {
   margin-bottom: 8px;
   color: #555;
   line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .logo {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .actionButtons {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .primaryButton, .secondaryButton, .submitButton, .cancelButton, .copyButton, .dangerButton {
+    width: 100%;
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+  
+  .formSection {
+    padding: 15px;
+  }
+  
+  .form input {
+    font-size: 14px;
+  }
+  
+  .householdDetails {
+    padding: 15px;
+  }
+  
+  .inviteCode {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .inviteCode code {
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  .membersList li {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+  
+  .infoBox {
+    padding: 15px;
+  }
 }

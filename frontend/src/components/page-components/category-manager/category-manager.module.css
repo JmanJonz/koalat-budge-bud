@@ -36,7 +36,7 @@ h1 {
   margin: 0 0 20px 0;
   font-size: 20px;
   color: #333;
-  border-bottom: 2px solid #667eea;
+  border-bottom: 2px solid #52796F;
   padding-bottom: 10px;
 }
 
@@ -56,12 +56,12 @@ h1 {
 
 .input:focus, .select:focus {
   outline: none;
-  border-color: #667eea;
+  border-color: #52796F;
 }
 
 .createButton {
   padding: 12px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #84A98C;
   color: white;
   border: none;
   border-radius: 6px;
@@ -73,7 +73,8 @@ h1 {
 
 .createButton:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 4px 8px rgba(82, 121, 111, 0.4);
+  background: #6B8B73;
 }
 
 .categoryList, .subCategoryList {
@@ -91,7 +92,7 @@ h1 {
   border-radius: 8px;
   cursor: pointer;
   transition: background 0.2s, transform 0.2s;
-  border-left: 4px solid #667eea;
+  border-left: 4px solid #84A98C;
 }
 
 .categoryCard:hover {
@@ -100,8 +101,8 @@ h1 {
 }
 
 .categoryCard.selected {
-  background: #e8e8ff;
-  border-left-color: #764ba2;
+  background: #E8F3EE;
+  border-left-color: #52796F;
 }
 
 .categoryInfo {
@@ -145,7 +146,7 @@ h1 {
   padding: 12px;
   background: #f9f9f9;
   border-radius: 6px;
-  border-left: 3px solid #2196f3;
+  border-left: 3px solid #52796F;
 }
 
 .subCategoryName {
@@ -155,7 +156,7 @@ h1 {
 
 .deleteButton {
   padding: 6px 12px;
-  background: #f44336;
+  background: #B87F6F;
   color: white;
   border: none;
   border-radius: 4px;
@@ -165,7 +166,7 @@ h1 {
 }
 
 .deleteButton:hover {
-  background: #d32f2f;
+  background: #A06B5B;
 }
 
 .emptyMessage {
@@ -183,7 +184,7 @@ h1 {
 }
 
 .infoMessage {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #84A98C;
   color: white;
   padding: 20px;
   border-radius: 12px;

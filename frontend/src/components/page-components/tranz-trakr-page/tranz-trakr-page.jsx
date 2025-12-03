@@ -194,6 +194,16 @@ export const TranzTrakrPage = () => {
                 <h4>Mount</h4>
                 <input onChange={updateFormData} name='amount' type="number" className={styles.inputAmount} />
             </section>
+            <section>
+                <h4>Notes (Optional)</h4>
+                <textarea 
+                  onChange={updateFormData} 
+                  name='notes' 
+                  className={styles.inputNotes}
+                  placeholder="Add any notes about this transaction..."
+                  rows="3"
+                />
+            </section>
             <button
               className={styles.submitButton}
               type='submit'

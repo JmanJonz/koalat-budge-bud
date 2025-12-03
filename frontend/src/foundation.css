@@ -3,7 +3,7 @@
 html {
     color: #2F3E46;
     background-color: #A9BAB0;
-    font-family: cursive;
+    font-family: 'Comic Sans MS', 'Trebuchet MS', Arial, sans-serif;
 }
 
 div, section, article, aside, form, button, select, input {
@@ -72,4 +72,22 @@ a /* Links might have outlines on focus */
   /* Optionally, you might want to ensure the border color also matches
      if the element already has a border that changes on focus. */
   border-color: #2F3E46;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  html {
+    font-size: 16px; /* Prevent zoom on input focus in iOS */
+  }
+  
+  /* Make buttons and interactive elements easier to tap */
+  button, input, select, textarea {
+    min-height: 44px; /* Apple's recommended touch target size */
+  }
+  
+  /* Better spacing for mobile */
+  body {
+    padding: 0;
+    margin: 0;
+  }
 }

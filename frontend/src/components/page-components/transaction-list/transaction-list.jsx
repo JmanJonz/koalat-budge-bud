@@ -18,6 +18,22 @@ export const TransactionList = () => {
   const [categories, setCategories] = useState([]);
   const [editingId, setEditingId] = useState(null);
   const [editData, setEditData] = useState({});
+  const [householdInfo, setHouseholdInfo] = useState(null);
+  const [isHouseholdOwner, setIsHouseholdOwner] = useState(false);
+
+  // Fetch household info to determine if user is owner
+  useEffect(() => {
+    const fetchHouseholdInfo = async () => {
+      const result = await apiClient.getHouseholdInfo();
+      if (result.success && result.data.household) {
+        setHouseholdInfo(result.data.household);
+        setIsHouseholdOwner(result.data.household.isOwner);
+      }
+    };
+    if (currentUser) {
+      fetchHouseholdInfo();
+    }
+  }, [currentUser]);
 
   // Fetch categories for filter dropdown
   useEffect(() => {
@@ -107,6 +123,19 @@ export const TransactionList = () => {
       ...editData,
       [e.target.name]: e.target.value
     });
+  };
+
+  // Check if current user can edit/delete a transaction
+  const canModifyTransaction = (transaction) => {
+    if (!currentUser || !transaction.user_id) return false;
+    
+    // User owns the transaction - convert both to strings for comparison
+    const ownsTransaction = String(transaction.user_id._id) === String(currentUser.userId);
+    
+    // User is household owner
+    const isOwner = isHouseholdOwner;
+    
+    return ownsTransaction || isOwner;
   };
 
   if (loading) {
@@ -207,10 +236,12 @@ export const TransactionList = () => {
                     {transaction.notes && <span className={styles.notes}>{transaction.notes}</span>}
                     <span className={styles.user}>By: {transaction.user_id?.username}</span>
                   </div>
+                  {canModifyTransaction(transaction) && (
                   <div className={styles.actions}>
                     <button onClick={() => startEdit(transaction)} className={styles.editButton}>Edit</button>
                     <button onClick={() => handleDelete(transaction._id)} className={styles.deleteButton}>Delete</button>
                   </div>
+                  )}
                 </>
               )}
             </div>

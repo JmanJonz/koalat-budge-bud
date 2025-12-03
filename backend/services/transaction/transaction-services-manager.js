@@ -159,12 +159,22 @@ const updateTransaction = async (req, res) => {
             return res.status(404).json({ message: "Transaction not found" });
         }
 
-        // Verify user owns this transaction or is in the same household
+        // Verify user owns this transaction OR is the household owner
         const userId = req.authorizedUserInfo.userId;
         const householdId = req.authorizedUserInfo.householdId;
         
-        if (transaction.user_id.toString() !== userId && transaction.household_id?.toString() !== householdId) {
-            return res.status(403).json({ message: "Not authorized to update this transaction" });
+        // Check if user owns the transaction
+        const ownsTransaction = transaction.user_id.toString() === userId;
+        
+        // If user doesn't own the transaction, check if they're the household owner
+        let isHouseholdOwner = false;
+        if (!ownsTransaction && householdId) {
+            const household = await HouseholdModel.findById(householdId);
+            isHouseholdOwner = household && household.owner.toString() === userId;
+        }
+        
+        if (!ownsTransaction && !isHouseholdOwner) {
+            return res.status(403).json({ message: "Not authorized to update this transaction. Only the transaction creator or household owner can edit." });
         }
 
         // Update fields
@@ -199,12 +209,22 @@ const deleteTransaction = async (req, res) => {
             return res.status(404).json({ message: "Transaction not found" });
         }
 
-        // Verify user owns this transaction or is in the same household
+        // Verify user owns this transaction OR is the household owner
         const userId = req.authorizedUserInfo.userId;
         const householdId = req.authorizedUserInfo.householdId;
         
-        if (transaction.user_id.toString() !== userId && transaction.household_id?.toString() !== householdId) {
-            return res.status(403).json({ message: "Not authorized to delete this transaction" });
+        // Check if user owns the transaction
+        const ownsTransaction = transaction.user_id.toString() === userId;
+        
+        // If user doesn't own the transaction, check if they're the household owner
+        let isHouseholdOwner = false;
+        if (!ownsTransaction && householdId) {
+            const household = await HouseholdModel.findById(householdId);
+            isHouseholdOwner = household && household.owner.toString() === userId;
+        }
+        
+        if (!ownsTransaction && !isHouseholdOwner) {
+            return res.status(403).json({ message: "Not authorized to delete this transaction. Only the transaction creator or household owner can delete." });
         }
 
         await TransactionModel.findByIdAndDelete(id);

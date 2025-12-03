@@ -84,11 +84,11 @@ h2 {
 }
 
 .transactionCard.inflow {
-  border-left-color: #4caf50;
+  border-left-color: #84A98C;
 }
 
 .transactionCard.outflow {
-  border-left-color: #f44336;
+  border-left-color: #B87F6F;
 }
 
 .transactionHeader {
@@ -104,11 +104,11 @@ h2 {
 }
 
 .inflow .amount {
-  color: #4caf50;
+  color: #52796F;
 }
 
 .outflow .amount {
-  color: #f44336;
+  color: #8B6F5F;
 }
 
 .date {
@@ -156,30 +156,30 @@ h2 {
 }
 
 .editButton {
-  background: #2196f3;
+  background: #52796F;
   color: white;
 }
 
 .editButton:hover {
-  background: #1976d2;
+  background: #3D5A51;
 }
 
 .deleteButton {
-  background: #f44336;
+  background: #B87F6F;
   color: white;
 }
 
 .deleteButton:hover {
-  background: #d32f2f;
+  background: #A06B5B;
 }
 
 .saveButton {
-  background: #4caf50;
+  background: #84A98C;
   color: white;
 }
 
 .saveButton:hover {
-  background: #45a049;
+  background: #6B8B73;
 }
 
 .cancelButton {

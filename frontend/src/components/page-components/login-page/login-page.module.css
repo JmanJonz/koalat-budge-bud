@@ -67,3 +67,24 @@ h2 {
     border-bottom: 3px solid #2F3E46;
     margin-bottom: 15px;
 }
+
+@media (max-width: 768px) {
+    .formcontainer {
+        width: 90%;
+        max-width: 350px;
+        padding: 20px 15px;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+    }
+    
+    .logo {
+        width: 40px;
+    }
+    
+    .submitButton {
+        font-size: 1rem;
+        padding: 8px;
+    }
+}

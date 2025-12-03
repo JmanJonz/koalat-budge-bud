@@ -101,31 +101,31 @@ h1 {
 }
 
 .inflowCard {
-  border-top: 4px solid #4caf50;
+  border-top: 4px solid #84A98C;
 }
 
 .inflowCard .amount {
-  color: #4caf50;
+  color: #52796F;
 }
 
 .outflowCard {
-  border-top: 4px solid #f44336;
+  border-top: 4px solid #B87F6F;
 }
 
 .outflowCard .amount {
-  color: #f44336;
+  color: #8B6F5F;
 }
 
 .netCard {
-  border-top: 4px solid #2196f3;
+  border-top: 4px solid #52796F;
 }
 
 .positive {
-  color: #4caf50;
+  color: #52796F;
 }
 
 .negative {
-  color: #f44336;
+  color: #8B6F5F;
 }
 
 .count {
@@ -160,7 +160,7 @@ h1 {
   padding: 15px;
   background: #f9f9f9;
   border-radius: 8px;
-  border-left: 4px solid #2196f3;
+  border-left: 4px solid #84A98C;
   transition: background 0.2s;
 }
 
@@ -197,7 +197,7 @@ h1 {
 .categoryAmount {
   font-size: 24px;
   font-weight: bold;
-  color: #2196f3;
+  color: #52796F;
 }
 
 .categoryCount {
@@ -221,7 +221,7 @@ h1 {
 
 .linkButton {
   padding: 12px 24px;
-  background: #2196f3;
+  background: #84A98C;
   color: white;
   text-decoration: none;
   border-radius: 6px;
@@ -231,7 +231,7 @@ h1 {
 }
 
 .linkButton:hover {
-  background: #1976d2;
+  background: #6B8B73;
 }
 
 .loading {
