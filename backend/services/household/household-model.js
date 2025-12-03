@@ -9,12 +9,12 @@ const householdSchema = new mongoose.Schema({
     },
     owner: { // the person who creates a household
         type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
+        ref: "users",
         required: true
     },
     members: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
+        ref: "users",
         required: true
     }],
     invite_code: { // unique household identifier used to join a household
@@ -27,5 +27,5 @@ const householdSchema = new mongoose.Schema({
     timestamps: true
 });
 
-const HouseholdModel = mongoose.model("Household", householdSchema);
+const HouseholdModel = mongoose.model("households", householdSchema);
 export default HouseholdModel;

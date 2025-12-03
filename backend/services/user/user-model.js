@@ -24,6 +24,15 @@ const userSchema = mongoose.Schema(
             type: String,
             enum: ["free", "paid"],
             default: "free",
+        },
+        household_id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "households",
+            required: false
+        },
+        joined_household_at: {
+            type: Date,
+            required: false
         }
     },
     {

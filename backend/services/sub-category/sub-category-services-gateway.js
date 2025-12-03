@@ -1,7 +1,7 @@
 import express from "express";
 import { createGateTrafficLogger } from "../../utilities/gateway-traffic-logger.js";
 import { authorizeExistingUser } from "../../utilities/authorize-existing-user.js";
-import { createSubCat, getSubCats } from "./sub-category-services-manager.js";
+import { createSubCat, getSubCats, deleteSubCat } from "./sub-category-services-manager.js";
 
 const subCategoryGateway = express.Router(); // creates an express router instance
 
@@ -13,6 +13,8 @@ const subCategoryGateway = express.Router(); // creates an express router instan
     subCategoryGateway.post("/create", authorizeExistingUser, createSubCat);
 
     subCategoryGateway.get("/get-all", authorizeExistingUser, getSubCats);
+
+    subCategoryGateway.delete("/delete/:id", authorizeExistingUser, deleteSubCat);
 
 
 

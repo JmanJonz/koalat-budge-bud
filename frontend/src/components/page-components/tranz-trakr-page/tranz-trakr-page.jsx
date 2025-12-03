@@ -23,9 +23,9 @@ export const TranzTrakrPage = () => {
   })
   const currentUser = useAtomValue(currentUserAtom)
 
-  // Helper variable to check if the user is authenticated (assuming user has a unique _id)
+  // Helper variable to check if the user is authenticated (assuming user has a unique userId)
     // This will be null/false on the first render, and true/object on the second render.
-    const userIsAuthenticated = currentUser && currentUser._id;
+    const userIsAuthenticated = currentUser && currentUser.userId;
 
   useEffect(() => {
     console.log("in transtrackerpage useeffect running on pre render... here is data set using jotai atom for current user", currentUser)
@@ -95,8 +95,59 @@ export const TranzTrakrPage = () => {
   const trackTransAction = async (event) => {
     event.preventDefault()
     console.log("Form submitted")
-    for (const key in formData) {
-      console.log(formData[key]);
+    
+    // Validate all required fields
+    if (!transType || !formData.category_id || !formData.sub_category_id || !formData.amount) {
+      alert("Please fill in all required fields");
+      return;
+    }
+
+    // Build transaction data
+    const transactionData = {
+      type: transType,
+      amount: parseFloat(formData.amount),
+      category_id: formData.category_id,
+      sub_category_id: formData.sub_category_id,
+      notes: formData.notes || "",
+      user_id: currentUser.userId,
+      household_id: currentUser.householdId || null
+    };
+
+    try {
+      const BACKEND_TARGET_URL = import.meta.env.VITE_BACKEND_TARGET_URL;
+      const response = await fetch(`${BACKEND_TARGET_URL}/gateways/transaction/create`, {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(transactionData)
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        console.log("Transaction created:", data);
+        alert("Transaction tracked successfully!");
+        // Reset form
+        setFormData({
+          type: null,
+          category_id: null,
+          sub_category_id: null,
+          user_id: null,
+          household_id: null,
+          amount: 0,
+          notes: ""
+        });
+        setTransType(null);
+        setSubCats([]);
+      } else {
+        console.error("Transaction error:", data);
+        alert(data.message || "Failed to track transaction");
+      }
+    } catch (error) {
+      console.error("Fetch error:", error);
+      alert("Network error occurred");
     }
   }
 
@@ -112,7 +163,7 @@ export const TranzTrakrPage = () => {
         <form onSubmit={trackTransAction} className={styles.formcontainer}>
           <CurrentUserFlag username={currentUser != null ? currentUser.username : ""}></CurrentUserFlag>
           <h2>Tranz Trakr</h2>
-          <Link to={"/Menu-Page"}><img className={styles.logo} src="/512ktbudgebudiconlogo.png" alt="logo" /></Link>
+          <Link to={"/menu-page"}><img className={styles.logo} src="/512ktbudgebudiconlogo.png" alt="logo" /></Link>
             <section>
                 <div className={styles.transTypeButtonsContainer}>
                   <button onChange={updateFormData} name='type' className={`${styles.transButtons} ${transType === "inflow" ? styles.buttonSelected : ""}`} onClick={()=>{setTransType("inflow")}} type='button'>Inflow</button>
@@ -123,17 +174,19 @@ export const TranzTrakrPage = () => {
                 <h4>Cat</h4>
                 <select onChange={updateFormData} name="category_id" id="" className={styles.categoryDropdown}>
                     <option value="" disabled selected hidden>-- Please select an option --</option>
-                    {categories.map((category) => (
+                    {categories
+                      .filter(category => !transType || category.category_type === transType)
+                      .map((category) => (
                       <option key={category._id} value={category._id}>{category.category_name}</option>
                     ))}
                 </select>
             </section>
             <section>
                 <h4>Sub Cat</h4>
-                <select onChange={updateFormData} name="subCategory" id="" className={styles.categoryDropdown}>
+                <select onChange={updateFormData} name="sub_category_id" id="" className={styles.categoryDropdown}>
                   <option value="" disabled selected hidden>-- Please select an option --</option>
                   {subCats.map((sCat) => {
-                    return <option key={sCat._id} value={sCat.sub_category_name}>{sCat.sub_category_name}</option>
+                    return <option key={sCat._id} value={sCat._id}>{sCat.sub_category_name}</option>
                   })}
                 </select>
             </section>

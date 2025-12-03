@@ -1,0 +1,270 @@
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.logo {
+  display: block;
+  margin: 0 auto 20px;
+  width: 80px;
+  height: 80px;
+  cursor: pointer;
+}
+
+.menuLink {
+  display: block;
+  text-align: center;
+}
+
+.loading {
+  text-align: center;
+  padding: 40px;
+  font-size: 18px;
+  color: #666;
+}
+
+.message {
+  background: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.noHousehold {
+  background: #f9f9f9;
+  padding: 30px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.noHousehold p {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.actionButtons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.primaryButton, .secondaryButton, .submitButton, .cancelButton, .copyButton, .dangerButton {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.primaryButton {
+  background: #4CAF50;
+  color: white;
+}
+
+.primaryButton:hover {
+  background: #45a049;
+}
+
+.secondaryButton {
+  background: #2196F3;
+  color: white;
+}
+
+.secondaryButton:hover {
+  background: #0b7dda;
+}
+
+.submitButton {
+  background: #4CAF50;
+  color: white;
+}
+
+.submitButton:hover {
+  background: #45a049;
+}
+
+.cancelButton {
+  background: #999;
+  color: white;
+}
+
+.cancelButton:hover {
+  background: #888;
+}
+
+.dangerButton {
+  background: #f44336;
+  color: white;
+  margin-top: 20px;
+}
+
+.dangerButton:hover {
+  background: #da190b;
+}
+
+.form {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.form h3 {
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+}
+
+.formButtons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.householdInfo {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.householdInfo h3 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px;
+  font-size: 24px;
+}
+
+.infoSection {
+  margin-bottom: 25px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.infoSection:last-of-type {
+  border-bottom: none;
+}
+
+.infoSection label {
+  display: block;
+  font-weight: bold;
+  color: #555;
+  margin-bottom: 8px;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.infoSection p {
+  color: #333;
+  font-size: 16px;
+  margin: 0;
+}
+
+.inviteCodeSection {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.inviteCode {
+  font-family: 'Courier New', monospace;
+  font-size: 24px;
+  font-weight: bold;
+  color: #2196F3;
+  letter-spacing: 2px;
+  padding: 10px 15px;
+  background: #f0f8ff;
+  border-radius: 4px;
+  border: 2px solid #2196F3;
+}
+
+.copyButton {
+  background: #2196F3;
+  color: white;
+  padding: 10px 20px;
+}
+
+.copyButton:hover {
+  background: #0b7dda;
+}
+
+.hint {
+  font-size: 12px;
+  color: #888;
+  margin-top: 8px;
+  font-style: italic;
+}
+
+.membersList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.membersList li {
+  padding: 10px;
+  background: #f9f9f9;
+  margin-bottom: 8px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ownerBadge {
+  background: #FFD700;
+  color: #333;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.infoBox {
+  background: #e3f2fd;
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 30px;
+  border-left: 4px solid #2196F3;
+}
+
+.infoBox h4 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: #1976D2;
+}
+
+.infoBox ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.infoBox li {
+  margin-bottom: 8px;
+  color: #555;
+  line-height: 1.6;
+}

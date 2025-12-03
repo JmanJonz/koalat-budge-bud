@@ -1,14 +1,22 @@
 import express from "express";
-import { createTransaction } from "./transaction-services-manager.js";
+import { createTransaction, getTransactions, updateTransaction, deleteTransaction, getTransactionSummary } from "./transaction-services-manager.js";
 import { authorizeExistingUser } from "../../utilities/authorize-existing-user.js";
 
 const TransactionGateway = express.Router(); // creates an express router instance
 
-// define the post gate for creating a Transaction
-    // when a POST request is made to the path this router is mounted on
-    // the 'createTransaction' function from the handler will be executed. 
-        TransactionGateway.post("/create", authorizeExistingUser, createTransaction);
+// Create a new transaction
+TransactionGateway.post("/create", authorizeExistingUser, createTransaction);
 
-// you can add other Transaction-related gateways here (eg router.get by id update etc)
+// Get all transactions with optional filters
+TransactionGateway.get("/get-all", authorizeExistingUser, getTransactions);
+
+// Get transaction summary/analytics
+TransactionGateway.get("/summary", authorizeExistingUser, getTransactionSummary);
+
+// Update a transaction by ID
+TransactionGateway.put("/update/:id", authorizeExistingUser, updateTransaction);
+
+// Delete a transaction by ID
+TransactionGateway.delete("/delete/:id", authorizeExistingUser, deleteTransaction);
 
 export default TransactionGateway; // export this instance of the express router to be used in server.js

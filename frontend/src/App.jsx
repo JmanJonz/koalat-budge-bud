@@ -1,10 +1,15 @@
 
 const BACKEND_TARGET_URL = import.meta.env.VITE_BACKEND_TARGET_URL;
 import React, { useEffect } from 'react';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link, Navigate } from 'react-router-dom';
 import { TranzTrakrPage } from './components/page-components/tranz-trakr-page/tranz-trakr-page.jsx';
 import { MenuPage } from './components/page-components/menu-page/menu-page';
 import { LoginPage } from "./components/page-components/login-page/login-page";
+import { TransactionList } from './components/page-components/transaction-list/transaction-list.jsx';
+import { Dashboard } from './components/page-components/dashboard/dashboard.jsx';
+import { CategoryManager } from './components/page-components/category-manager/category-manager.jsx';
+import { HouseholdManager } from './components/page-components/household-manager/household-manager.jsx';
+import { ProtectedRoute } from './components/reusable-components/protected-route/ProtectedRoute.jsx';
 import { useAtom } from 'jotai';
 import { currentUserAtom } from './atoms.js';
 function App() {
@@ -43,9 +48,39 @@ function App() {
     <>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<TranzTrakrPage/>}/>
-        <Route path="/menu-page" element={<MenuPage/>}/>
         <Route path="/login-page" element={<LoginPage/>}/>
+        <Route path="/" element={
+          <ProtectedRoute>
+            <TranzTrakrPage/>
+          </ProtectedRoute>
+        }/>
+        <Route path="/menu-page" element={
+          <ProtectedRoute>
+            <MenuPage/>
+          </ProtectedRoute>
+        }/>
+        <Route path="/transaction-list" element={
+          <ProtectedRoute>
+            <TransactionList/>
+          </ProtectedRoute>
+        }/>
+        <Route path="/dashboard" element={
+          <ProtectedRoute>
+            <Dashboard/>
+          </ProtectedRoute>
+        }/>
+        <Route path="/category-manager" element={
+          <ProtectedRoute>
+            <CategoryManager/>
+          </ProtectedRoute>
+        }/>
+        <Route path="/household-manager" element={
+          <ProtectedRoute>
+            <HouseholdManager/>
+          </ProtectedRoute>
+        }/>
+        {/* Catch-all route for invalid paths */}
+        <Route path="*" element={<Navigate to="/login-page" replace />} />
       </Routes>
     </BrowserRouter>
     </>

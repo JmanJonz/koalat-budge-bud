@@ -1,7 +1,16 @@
 import SubCategoryModel from "./sub-category-model.js";
+import HouseholdModel from "../household/household-model.js";
 
 // create a new sub cat for a cat
     export const createSubCat = async (req, res) => {
+        // Check if user is in a household and is the owner
+        if (req.authorizedUserInfo.householdId) {
+            const household = await HouseholdModel.findById(req.authorizedUserInfo.householdId);
+            if (!household || household.owner.toString() !== req.authorizedUserInfo.userId) {
+                return res.status(403).json({ message: "Only household owners can create sub-categories" });
+            }
+        }
+        
         // pull params we care about out of the req.body object
             const {subCatName, parentCatID} = req.body;
                         console.log("create subcat service running here is what is in the parentcat of the body", parentCatID)
@@ -46,5 +55,33 @@ import SubCategoryModel from "./sub-category-model.js";
             })
         } catch {
             console.log("some error occurred when getting sub cats...")
+        }
+    }
+
+// delete a sub-category
+    export const deleteSubCat = async (req, res) => {
+        try {
+            // Check if user is in a household and is the owner
+            if (req.authorizedUserInfo.householdId) {
+                const household = await HouseholdModel.findById(req.authorizedUserInfo.householdId);
+                if (!household || household.owner.toString() !== req.authorizedUserInfo.userId) {
+                    return res.status(403).json({ message: "Only household owners can delete sub-categories" });
+                }
+            }
+            
+            const { id } = req.params;
+            const deletedSubCat = await SubCategoryModel.findByIdAndDelete(id);
+            
+            if (!deletedSubCat) {
+                return res.status(404).json({ message: "Sub-category not found" });
+            }
+            
+            res.status(200).json({
+                message: "Sub-category deleted successfully",
+                deletedSubCat
+            });
+        } catch (error) {
+            console.error("Error deleting sub-category:", error);
+            res.status(500).json({ message: "Server error deleting sub-category" });
         }
     }

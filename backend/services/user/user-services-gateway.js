@@ -1,5 +1,5 @@
 import express from "express";
-import { authenticateUser, createUser, getCurrentUserInfo } from "../user/user-services-manager.js"
+import { authenticateUser, createUser, getCurrentUserInfo, logoutUser } from "../user/user-services-manager.js"
 import { createGateTrafficLogger } from "../../utilities/gateway-traffic-logger.js";
 import { authorizeExistingUser } from "../../utilities/authorize-existing-user.js";
 const UserGateway = express.Router(); // creates an express router instance
@@ -20,6 +20,9 @@ const UserGateway = express.Router(); // creates an express router instance
 
 // through this gate the user will attempt to login and get authenticated in our system
     UserGateway.post("/login", authenticateUser)
+
+// logout user by clearing JWT cookie
+    UserGateway.post("/logout", authorizeExistingUser, logoutUser);
 
 // you can add other user-related gateways here (eg router.get by id update etc)
 

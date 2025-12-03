@@ -168,4 +168,26 @@ import HouseholdModel from "../household/household-model.js";
                     });
     }
 
+// @desc Logout user
+// @route POST /gateways/user/logout
+// @access Private
+export const logoutUser = async (req, res) => {
+    try {
+        // Clear the JWT cookie
+        res.cookie("jsonWebToken", "", {
+            httpOnly: true,
+            expires: new Date(0), // Expire immediately
+            secure: false, // Match your login settings
+            sameSite: "Lax",
+        });
+
+        res.status(200).json({
+            message: "Logged out successfully"
+        });
+    } catch (error) {
+        console.error("Error during logout:", error);
+        res.status(500).json({ message: "Server error during logout" });
+    }
+};
+
 export {createUser}; // since you exported an object you will want to destructure the object upon import to get what you want from inside it...
