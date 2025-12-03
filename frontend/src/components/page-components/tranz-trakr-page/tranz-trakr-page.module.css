@@ -65,6 +65,7 @@
     border: 1px solid #84A98C;
     border-radius: 4px;
     resize: vertical;
+    box-sizing: border-box;
 }
 
 .inputNotes:focus {
